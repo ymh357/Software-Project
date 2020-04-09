@@ -2,10 +2,6 @@ import React from "react"
 import {Link, withRouter} from 'react-router-dom'
 class HomePage extends React.Component{
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         if(localStorage.getItem('user')){
             return (

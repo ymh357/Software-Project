@@ -1,5 +1,5 @@
 import React from "react"
-import {Link, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import Product from "../components/product";
 
 class CurrentOrderPage extends React.Component{
@@ -43,11 +43,14 @@ class CurrentOrderPage extends React.Component{
         let newProducts = this.state.order.products.map(p=>{
             if(+p.id === productId){
                 let newP = {...p}
-                newP.quantity --
+                if(newP.quantity > 0){
+                    newP.quantity --
+                }
                 return newP
             }
             return p
         })
+
         this.setState({
             order: {
                 products: newProducts
@@ -79,9 +82,11 @@ class CurrentOrderPage extends React.Component{
                         <h1>Current Order:</h1>
                         <ul>
                             {
-                                this.state.order.products.map(e=>
-                                    <Product product={e} key={e.id}></Product>
-                                )
+                                this.state.order.products.map(e=>{
+                                    if(e.quantity>0)
+                                        return <Product product={e} key={e.id}></Product>
+                                    return null
+                               })
                             }
                         </ul>
                         <button onClick={this._handleSubmit}>submit</button>
