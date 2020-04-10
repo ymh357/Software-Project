@@ -4,6 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+### To install Bulma CSS framework
+
+npm install react-bulma-components
+
+
 ### For NPM usage:
 `npm install` then `npm run start` to run the App.
 
