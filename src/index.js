@@ -6,6 +6,7 @@ import LoginPage from './pages/loginPage';
 import HomePage from './pages/homePage';
 import HistoryOrdersPage from './pages/historyOrdersPage';
 import CurrentOrderPage from './pages/currentOrderPage';
+import Cart from './pages/Cart';
 
 class App extends React.Component {
     constructor(props) {
@@ -46,6 +47,7 @@ class App extends React.Component {
                     <Route path="/login"  component={LoginPage}></Route>
                     <Route path="/viewHistoryOrder"  component={HistoryOrdersPage}></Route>
                     <Route path="/order" component={CurrentOrderPage}></Route>
+                    <Route path="/cart" component={Cart}></Route>
                 </div>
             </Router>
         )
