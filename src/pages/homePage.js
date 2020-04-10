@@ -10,6 +10,7 @@ class HomePage extends React.Component{
                     <ul>
                         <li><Link to={'/order'}>View my current order</Link></li>
                         <li><Link to={'/viewHistoryOrder'}>View my history orders</Link></li>
+                        <li><Link to={'/Cart'}>Shopping Cart</Link></li>
                     </ul>
 
                 </>

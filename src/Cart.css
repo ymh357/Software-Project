@@ -1,0 +1,22 @@
+.Cart {
+  text-align: center;
+  padding-top: 36px;
+}
+
+.ScanForm-wrapper {
+
+  display: flex;
+  justify-content: center;
+}
+
+.ProductsList{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.ProductsList-items{
+  margin-bottom: 24px;
+  width: 48%;
+}

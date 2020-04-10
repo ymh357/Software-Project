@@ -7,6 +7,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### For NPM usage:
 `npm install` then `npm run start` to run the App.
 
+Make sure to have react-dom `npm install react react-dom`
+
 In the project directory, you can run:
 
 ### `yarn start`
