@@ -1,5 +1,6 @@
 import React from "react";
-import {withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom';
+import axios from 'axios';
 
 class LoginPage extends React.Component{
 
@@ -22,7 +23,30 @@ class LoginPage extends React.Component{
     }
 
     _handleSubmit(e){
-        localStorage.setItem('user', this.state.org_id)
+        e.preventDefault();
+        axios({
+                method: 'post',           
+                url: 'users/login',
+                headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
+                data:{
+                    "id": this.state.id,
+                    "password": this.state.org_pw,
+                    "email": this.state.org_key
+                }
+            }             
+            )
+            .then(
+                (response)=>{
+                    console.log(response);
+                    localStorage.setItem('user', this.state.org_id);
+                }
+            )
+            .catch(
+                (error)=>{
+                    console.log(error)
+                }
+            )
+        alert("finished");
     }
 
     render() {
