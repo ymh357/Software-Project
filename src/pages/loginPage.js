@@ -26,12 +26,12 @@ class LoginPage extends React.Component{
         e.preventDefault();
         axios({
                 method: 'post',           
-                url: 'users/login',
+                url: 'api/login',
                 headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
                 data:{
-                    "id": this.state.id,
-                    "password": this.state.org_pw,
-                    "email": this.state.org_key
+                    "org_id": this.state.id,
+                    "api_org_key": this.state.org_key,
+                    "api_org_pw": this.state.org_pw
                 }
             }             
             )
@@ -39,6 +39,7 @@ class LoginPage extends React.Component{
                 (response)=>{
                     console.log(response);
                     localStorage.setItem('user', this.state.org_id);
+                    localStorage.setItem('sessionKey', response);
                 }
             )
             .catch(
@@ -46,7 +47,6 @@ class LoginPage extends React.Component{
                     console.log(error)
                 }
             )
-        alert("finished");
     }
 
     render() {
