@@ -8,11 +8,32 @@ class HomePage extends React.Component{
             return (
                 <div className='Cart'>
                     <Title>Home</Title>
-                    <ul>
-                        <li><Link to={'/order'}>View my current order</Link></li>
-                        <li><Link to={'/viewHistoryOrder'}>View my history orders</Link></li>
-                        <li><Link to={'/cart'}>Shopping Cart</Link></li>
-                    </ul> 
+                    
+                    
+                        <div className="tile is-4 is-vertical is-parent">
+                            <div className="tile is-child box">
+                            <p className="card-title"><Link to={'/order'}>Scan Products</Link></p>
+                            </div>
+                        </div>
+                        <div className="tile is-4 is-vertical is-parent">
+
+                            <div className="tile is-child box">
+                            <p className="card-title"><Link to={'/viewHistoryOrder'}>Add Manually</Link></p>
+                            </div>
+                        </div>
+                        <div className="tile is-4 is-vertical is-parent">
+                            <div className="tile is-child box">
+                            <p className="card-title"><Link to={'/cart'}>Shopping Cart</Link></p>
+                            </div>
+                        </div>
+                        <div className="tile is-4 is-vertical is-parent">
+                            <div className="tile is-child box">
+                            <p className="card-title">Log out</p>
+                           {// <p className="card-title"><Link to={'/login'}>Log out</Link></p>
+                           }
+                            </div>
+                        </div>
+                     
 
                 </div>
 
