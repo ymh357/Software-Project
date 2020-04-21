@@ -113,6 +113,7 @@ class CurrentOrderPage extends React.Component{
         }
         //console.log(this.props.history)
         this.props.history.push('/login')
+        return 'error?'
     }
 }
 

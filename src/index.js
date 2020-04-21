@@ -41,12 +41,14 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <div className="App">
-                    <Route path="/" exact component={HomePage}></Route>
-                    <Route path="/login"  component={LoginPage}></Route>
-                    <Route path="/viewHistoryOrder"  component={HistoryOrdersPage}></Route>
-                    <Route path="/order" component={CurrentOrderPage}></Route>
+                <header/>
+                <div className="App" style={{height: '100%', width:'100%'}}>
+                    <Route path="/" exact component={HomePage}/>
+                    <Route path="/login" exact component={LoginPage}/>
+                    <Route path="/viewHistoryOrder" exact component={HistoryOrdersPage}/>
+                    <Route path="/order" exact component={CurrentOrderPage}/>
                 </div>
+                <footer/>
             </Router>
         )
     }

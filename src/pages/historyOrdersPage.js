@@ -1,6 +1,7 @@
 import React from "react"
 import {withRouter} from 'react-router-dom'
 import Order from '../components/order'
+import historyStyle from '../css/history.module.css'
 
 class HistoryOrdersPage extends React.Component{
 
@@ -18,14 +19,20 @@ class HistoryOrdersPage extends React.Component{
                 <Order order={order} key={order.id}></Order>
             )
             return (
-                <ul>
-                    {orders}
-                </ul>
+                <>
+                    <h1>History Orders</h1>
+                    <ul>
+
+                        {orders}
+                    </ul>
+                </>
+
 
             )
         }
-        //console.log(this.props.history)
+
         this.props.history.push('/login')
+        return 'error?'
     }
 }
 
