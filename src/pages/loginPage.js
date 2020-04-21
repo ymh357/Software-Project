@@ -1,6 +1,6 @@
 import React from "react";
 import {withRouter} from 'react-router-dom'
-
+import loginStyle from '../css/login.module.css'
 class LoginPage extends React.Component{
 
     constructor(props) {
@@ -32,46 +32,17 @@ class LoginPage extends React.Component{
         }
         return (
 
-            <form onSubmit={this._handleSubmit}>
+            <div className={loginStyle.container}>
+                <h1>Login</h1>
+                <img src='https://image.flaticon.com/icons/svg/547/547432.svg' alt={'login icon'}/>
+                <form onSubmit={this._handleSubmit} className={loginStyle.loginForm}>
+                    <input type="text" value={this.state.org_id} id="org_id" onChange={this._handleChange} placeholder='Organization ID:'/>
+                    <input type="text" value={this.state.org_key} id="org_key"  onChange={this._handleChange} placeholder='Organization Key:'/>
+                    <input type="password" value={this.state.org_pw} id="org_pw"  onChange={this._handleChange} placeholder='Organization Password:'/>
+                    <button type="submit" className={loginStyle.loginBtn}>Login</button>
+                </form>
+            </div>
 
-              {/*  <div className="field">
-                <p className="control has-icons-left has-icons-right">
-                    <input className="input" type="email" placeholder="Email"/>
-                    <span className="icon is-small is-left">
-                    <i className="fas fa-envelope"></i>
-                    </span>
-                    <span className="icon is-small is-right">
-                    <i className="fas fa-check"></i>
-                    </span>
-                </p>
-                </div>
-                <div className="field">
-                <p className="control has-icons-left">
-                    <input className="input" type="password" placeholder="Password"/>
-                    <span className="icon is-small is-left">
-                    <i className="fas fa-lock"></i>
-                    </span>
-                </p>
-                </div>
-                <div className="field">
-                <p className="control">
-                    <button className="button is-success">
-                    Login
-                    </button>
-                </p>
-                </div>
-
-                */}
-                 
-                <label htmlFor="org_id">Organization ID:</label>
-                <input type="text" value={this.state.org_id} id="org_id" onChange={this._handleChange}/>
-                <label htmlFor="org_key">Organization Key:</label>
-                <input type="text" value={this.state.org_key} id="org_key"  onChange={this._handleChange}/>
-                <label htmlFor="org_pw">Organization Password:</label>
-                <input type="password" value={this.state.org_pw} id="org_pw"  onChange={this._handleChange}/>
-                <button type="submit">Sign in</button>
-                
-            </form>
         )
 
     }
