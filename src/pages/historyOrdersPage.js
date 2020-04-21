@@ -14,10 +14,13 @@ class HistoryOrdersPage extends React.Component{
     }
 
     render() {
+       
         if(localStorage.getItem('user')){
+           
             const orders = this.state.orders.map(order =>
                 <Order order={order} key={order.id}></Order>
             )
+            
             return (
                 <>
                     <h1>History Orders</h1>
@@ -26,7 +29,6 @@ class HistoryOrdersPage extends React.Component{
                         {orders}
                     </ul>
                 </>
-
 
             )
         }

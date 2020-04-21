@@ -1,7 +1,14 @@
 ## Available Scripts
 
+### To install Bulma CSS framework
+
+npm install react-bulma-components
+
+
 ### For NPM usage:
 `npm install` then `npm run start` to run the App.
+
+Make sure to have react-dom `npm install react react-dom`
 
 In the project directory, you can run:
 

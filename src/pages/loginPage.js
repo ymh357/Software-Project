@@ -31,6 +31,7 @@ class LoginPage extends React.Component{
             this.props.history.push('/')
         }
         return (
+
             <div className={loginStyle.container}>
                 <h1>Login</h1>
                 <img src='https://image.flaticon.com/icons/svg/547/547432.svg' alt={'login icon'}/>

@@ -1,5 +1,6 @@
 import React from "react"
 import {Link, withRouter} from 'react-router-dom'
+import { Title } from "../components/Title"
 import homeStyle from '../css/home.module.css'
 
 
@@ -29,7 +30,6 @@ class HomePage extends React.Component{
                             <Link to={'/viewHistoryOrder'}>HISTORY</Link>
                         </li>
                     </ul>
-
                 </>
 
             )
