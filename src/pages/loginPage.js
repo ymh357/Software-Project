@@ -1,7 +1,7 @@
 import React from "react";
-import {withRouter} from 'react-router-dom';
 import axios from 'axios';
-
+import {withRouter} from 'react-router-dom'
+import loginStyle from '../css/login.module.css'
 class LoginPage extends React.Component{
 
     constructor(props) {
@@ -55,15 +55,17 @@ class LoginPage extends React.Component{
             this.props.history.push('/')
         }
         return (
-            <form onSubmit={this._handleSubmit}>
-                <label htmlFor="org_id">Organization ID:</label>
-                <input type="text" value={this.state.org_id} id="org_id" onChange={this._handleChange}/>
-                <label htmlFor="org_key">Organization Key:</label>
-                <input type="text" value={this.state.org_key} id="org_key"  onChange={this._handleChange}/>
-                <label htmlFor="org_pw">Organization Password:</label>
-                <input type="password" value={this.state.org_pw} id="org_pw"  onChange={this._handleChange}/>
-                <button type="submit">Sign in</button>
-            </form>
+            <div className={loginStyle.container}>
+                <h1>Login</h1>
+                <img src='https://image.flaticon.com/icons/svg/547/547432.svg' alt={'login icon'}/>
+                <form onSubmit={this._handleSubmit} className={loginStyle.loginForm}>
+                    <input type="text" value={this.state.org_id} id="org_id" onChange={this._handleChange} placeholder='Organization ID:'/>
+                    <input type="text" value={this.state.org_key} id="org_key"  onChange={this._handleChange} placeholder='Organization Key:'/>
+                    <input type="password" value={this.state.org_pw} id="org_pw"  onChange={this._handleChange} placeholder='Organization Password:'/>
+                    <button type="submit" className={loginStyle.loginBtn}>Login</button>
+                </form>
+            </div>
+
         )
 
     }

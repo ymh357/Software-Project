@@ -6,7 +6,6 @@ import LoginPage from './pages/loginPage';
 import HomePage from './pages/homePage';
 import HistoryOrdersPage from './pages/historyOrdersPage';
 import CurrentOrderPage from './pages/currentOrderPage';
-import Cart from './pages/Cart';
 
 class App extends React.Component {
     constructor(props) {
@@ -42,13 +41,14 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <div className="App">
-                    <Route path="/" exact component={HomePage}></Route>
-                    <Route path="/login"  component={LoginPage}></Route>
-                    <Route path="/viewHistoryOrder"  component={HistoryOrdersPage}></Route>
-                    <Route path="/order" component={CurrentOrderPage}></Route>
-                    <Route path="/cart" component={Cart}></Route>
+                <header/>
+                <div className="App" style={{height: '100%', width:'100%'}}>
+                    <Route path="/" exact component={HomePage}/>
+                    <Route path="/login" exact component={LoginPage}/>
+                    <Route path="/viewHistoryOrder" exact component={HistoryOrdersPage}/>
+                    <Route path="/order" exact component={CurrentOrderPage}/>
                 </div>
+                <footer/>
             </Router>
         )
     }
