@@ -33,6 +33,11 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true,
+        proxy: {
+        '/api/*':'http://52.68.78.115:5000',
+        changeOrigin: true,
+        secure: false
+        }
     },
     plugins:[
         new HtmlWebpackPlugin({

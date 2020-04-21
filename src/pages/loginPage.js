@@ -29,7 +29,7 @@ class LoginPage extends React.Component{
                 url: 'api/login',
                 headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
                 data:{
-                    "org_id": this.state.id,
+                    "org_id": this.state.org_id,
                     "api_org_key": this.state.org_key,
                     "api_org_pw": this.state.org_pw
                 }
