@@ -7,9 +7,8 @@ class LoginPage extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            org_id: '',
-            org_key: '',
-            org_pw: ''
+            username: '',
+            password:''
         }
         this._handleChange = this._handleChange.bind(this)
         this._handleSubmit = this._handleSubmit.bind(this)
@@ -29,9 +28,9 @@ class LoginPage extends React.Component{
                 url: 'api/login',
                 headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
                 data:{
-                    "org_id": this.state.org_id,
-                    "api_org_key": this.state.org_key,
-                    "api_org_pw": this.state.org_pw
+                    "username": this.state.username,
+                    "password": this.state.password,
+                    
                 }
             }             
             )
@@ -59,9 +58,8 @@ class LoginPage extends React.Component{
                 <h1>Login</h1>
                 <img src='https://image.flaticon.com/icons/svg/547/547432.svg' alt={'login icon'}/>
                 <form onSubmit={this._handleSubmit} className={loginStyle.loginForm}>
-                    <input type="text" value={this.state.org_id} id="org_id" onChange={this._handleChange} placeholder='Organization ID:'/>
-                    <input type="text" value={this.state.org_key} id="org_key"  onChange={this._handleChange} placeholder='Organization Key:'/>
-                    <input type="password" value={this.state.org_pw} id="org_pw"  onChange={this._handleChange} placeholder='Organization Password:'/>
+                    <input type="text" value={this.state.username} id="username" onChange={this._handleChange} placeholder='Username'/>
+                    <input type="text" value={this.state.password} id="password"  onChange={this._handleChange} placeholder='Password'/>
                     <button type="submit" className={loginStyle.loginBtn}>Login</button>
                 </form>
             </div>
