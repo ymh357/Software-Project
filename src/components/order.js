@@ -28,6 +28,9 @@ class Order extends React.Component{
                         )
                     }
                 </ul>
+                Total Price: {this.props.order.products.reduce((acc , cur)=>{
+                    return acc + (cur.price * cur.quantity)
+                }, 0)}
             </li>
         )
     }
