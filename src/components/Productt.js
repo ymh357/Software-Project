@@ -35,6 +35,7 @@ export class Productt extends Component {
                         <div className="media-content">
                             <p className="title is-4">{item}}</p>
                             <p className="subtitle is-6">{price}}</p>
+                            
                         </div>
                     </div> 
                 </div>

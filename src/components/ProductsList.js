@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Productt } from './Productt'
+import { addToCart } from './actions/cartActions'
+
 
 export class ProductsList extends Component {
     static propTypes ={
