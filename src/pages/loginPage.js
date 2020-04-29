@@ -34,7 +34,7 @@ class LoginPage extends React.Component{
 
             <div className={loginStyle.container}>
                 <h1>Login</h1>
-                <img src='https://image.flaticon.com/icons/svg/547/547432.svg' alt={'login icon'}/>
+                <img className={loginStyle.loginImg} src='https://image.flaticon.com/icons/svg/547/547432.svg' alt={'login icon'}/>
                 <form onSubmit={this._handleSubmit} className={loginStyle.loginForm}>
                     <input type="text" value={this.state.org_id} id="org_id" onChange={this._handleChange} placeholder='Organization ID:'/>
                     <input type="text" value={this.state.org_key} id="org_key"  onChange={this._handleChange} placeholder='Organization Key:'/>

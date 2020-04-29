@@ -27,8 +27,8 @@ h1{
     flex-direction: column;
     justify-content: space-between;
     flex-wrap: wrap;
-    width: 45%;
-    height: 45%;
+    width: 50%;
+    height: 50%;
 }
 
 .menu li img{
@@ -37,5 +37,9 @@ h1{
 .menu li a{
     text-decoration: none;
     color:black;
+    font-size: 2em;
+}
+.menu li a:hover{
+    color:green;
     font-size: 2em;
 }

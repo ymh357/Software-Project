@@ -1,6 +1,8 @@
 import React from "react";
 import {withRouter} from 'react-router-dom'
 import Product from './product'
+import style from '../css/current_order.css'
+
 class Order extends React.Component{
     constructor(props) {
         super(props);
@@ -15,11 +17,11 @@ class Order extends React.Component{
 
     render() {
         return (
-            <li>
+            <li className={style.order}>
                 {this.props.edit && <button onClick={this._handleClick}>Order ID: {this.props.order.id}</button>}
                 {!this.props.edit && `Order ID: ${this.props.order.id}`}
                 Products :
-                <ul>
+                <ul className={style.cardContainer}>
                     {
                         this.props.order.products.map(product =>
                             <Product product = {product} key={product.id}></Product>

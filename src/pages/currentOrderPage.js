@@ -1,6 +1,7 @@
 import React from "react"
 import {withRouter} from 'react-router-dom'
 import Product from "../components/product";
+import style from '../css/current_order.css'
 
 class CurrentOrderPage extends React.Component{
 
@@ -78,9 +79,9 @@ class CurrentOrderPage extends React.Component{
         if(localStorage.getItem('user')){
             if(!this.state.edit){
                 return (
-                    <>
+                    <div className={style.currentOrder}>
                         <h1>Current Order:</h1>
-                        <ul>
+                        <ul className={style.cardContainer}>
                             {
                                 this.state.order.products.map(e=>{
                                     if(e.quantity>0)
@@ -89,17 +90,19 @@ class CurrentOrderPage extends React.Component{
                                })
                             }
                         </ul>
+                        <div>Total Price: {this.state.order.products.reduce((acc , cur)=>{
+                            return acc + (cur.price * cur.quantity)
+                         }, 0)}</div>
                         <button onClick={this._handleSubmit}>submit</button>
                         <button onClick={this._handleEdit}>edit</button>
-                    </>
+                    </div>
 
                 )
             }
-            console.log(this.state.order.products)
             return (
-                <>
+                <div className={style.currentOrder}>
                     <h1>Current Order editing:</h1>
-                    <ul>
+                    <ul className={style.cardContainer}>
                         {
                             this.state.order.products.map(e=>
                                 <Product product={e} key={e.id} edit toReduce={this.reduce} toAdd={this.add}></Product>
@@ -107,7 +110,7 @@ class CurrentOrderPage extends React.Component{
                         }
                     </ul>
                     <button onClick={this._handleSave}>save</button>
-                </>
+                </div>
 
             )
         }

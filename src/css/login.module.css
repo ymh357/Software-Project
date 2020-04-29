@@ -1,3 +1,7 @@
+h1{
+    font-size: 3em;
+}
+
 .container{
     display: flex;
     flex-direction: column;
@@ -21,7 +25,7 @@
     height: 10%;
 }
 
-img{
+.loginImg{
     max-width: 10%;
 }
 

@@ -1,0 +1,10 @@
+.card{
+    width: 30%;
+    border: 1px solid black;
+    text-align: center;
+    margin: 1%;
+}
+
+.card span{
+    display: block;
+}

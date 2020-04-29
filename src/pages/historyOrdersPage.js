@@ -1,7 +1,8 @@
 import React from "react"
 import {withRouter} from 'react-router-dom'
 import Order from '../components/order'
-import historyStyle from '../css/history.module.css'
+import style from '../css/history.module.css'
+
 
 class HistoryOrdersPage extends React.Component{
 
@@ -24,7 +25,7 @@ class HistoryOrdersPage extends React.Component{
             return (
                 <>
                     <h1>History Orders</h1>
-                    <ul>
+                    <ul className={style.orderContainer}>
 
                         {orders}
                     </ul>

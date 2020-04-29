@@ -7,6 +7,7 @@ import HomePage from './pages/homePage';
 import HistoryOrdersPage from './pages/historyOrdersPage';
 import CurrentOrderPage from './pages/currentOrderPage';
 import Cart from './pages/Cart';
+import NavigationBar from "./components/navigation_bar";
 
 class App extends React.Component {
     constructor(props) {
@@ -15,15 +16,24 @@ class App extends React.Component {
             let orders = [{
                 id: 1,
                 products: [
-                    {id: 1, name: 'product A', quantity: 1},
-                    {id: 2, name: 'product B', quantity: 2},
+                    {id: 1, name: 'product A', quantity: 1, price: 10},
+                    {id: 2, name: 'product B', quantity: 2, price: 20},
                 ]
             },
                 {
                     id: 2,
                     products: [
-                        {id: 2, name: 'product B', quantity: 3},
-                        {id: 3, name: 'product C', quantity: 4},
+                        {id: 2, name: 'product B', quantity: 3, price: 30},
+                        {id: 3, name: 'product C', quantity: 4, price: 40},
+                        {id: 4, name: 'product D', quantity: 1, price: 10},
+                    ]
+                }, {
+                    id: 3,
+                    products: [
+                        {id: 5, name: 'product E', quantity: 3, price: 30},
+                        {id: 6, name: 'product F', quantity: 4, price: 40},
+                        {id: 7, name: 'product G', quantity: 1, price: 10},
+                        {id: 8, name: 'product H', quantity: 1, price: 10},
                     ]
                 }]
             localStorage.setItem('orders', JSON.stringify(orders))
@@ -32,8 +42,10 @@ class App extends React.Component {
 
             localStorage.setItem('current_order', JSON.stringify({
                 products:[
-                    {id: 100, name: 'Milk', quantity: 2},
-                    {id: 101, name: 'Burger', quantity: 3}
+                    {id: 100, name: 'Milk', quantity: 2, price: 50},
+                    {id: 101, name: 'Burger', quantity: 3, price: 60},
+                    {id: 102, name: 'The shy', quantity: 1, price: 10},
+                    {id: 103, name: 'Energy Drink', quantity: 1, price: 10}
                 ]
             }))
         }
@@ -42,7 +54,9 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <header/>
+                <header>
+                    <NavigationBar/>
+                </header>
                 <div className="App" style={{height: '100%', width:'100%'}}>
                     <Route path="/" exact component={HomePage}/>
                     <Route path="/login" exact component={LoginPage}/>
