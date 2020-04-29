@@ -4,18 +4,18 @@ import {ScanForm} from '../components/ScanForm'
 import { ProductsList } from '../components/ProductsList'
 import {withRouter} from 'react-router-dom'
 
+import 'bulma/css/bulma.css';
 import './Cart.css';
-import 'bulma/css/bulma.css'
-
 
 class Cart extends Component {
  
-  state = { results: [] }
+  constructor(props) {
+  this.state = { results: [] }
 
   _handleResults = (results) => {
     this.setState({results})
   }
-
+  }
   render() {
     return (
       
