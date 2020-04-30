@@ -1,6 +1,7 @@
 import React from "react"
 import {withRouter} from 'react-router-dom'
 import Product from "../components/product";
+import axios from 'axios';
 
 class CurrentOrderPage extends React.Component{
 
@@ -10,10 +11,13 @@ class CurrentOrderPage extends React.Component{
         this.state = {
             order,
             edit: false,
+            productId:0,
         }
         this._handleEdit = this._handleEdit.bind(this)
         this._handleSubmit = this._handleSubmit.bind(this)
+        this._handleChange = this._handleChange.bind(this)
         this._handleSave = this._handleSave.bind(this)
+        this._handleSearch = this._handleSearch.bind(this)
         this.reduce = this.reduce.bind(this)
         this.add = this.add.bind(this)
     }
@@ -27,6 +31,13 @@ class CurrentOrderPage extends React.Component{
         this.props.history.push('/')
     }
 
+    _handleChange(e){
+        let id = e.target.id
+        this.setState({
+            [id]: e.target.value
+        })
+    }
+
     _handleEdit(e){
         this.setState({
             edit: true
@@ -38,7 +49,11 @@ class CurrentOrderPage extends React.Component{
             edit: false
         })
     }
-
+    _handleSearch(e){
+        e.preventDefault();
+        let scanCode = parseInt(this.state.productId);
+        this.add(scanCode);
+    }
     reduce(productId){
         let newProducts = this.state.order.products.map(p=>{
             if(+p.id === productId){
@@ -59,19 +74,56 @@ class CurrentOrderPage extends React.Component{
     }
 
     add(productId){
+        console.log("add"+productId)
         let newProducts = this.state.order.products.map(p=>{
             if(+p.id === productId){
                 let newP = {...p}
                 newP.quantity ++
                 return newP
-            }
-            return p
+            }            
+            return p       
         })
         this.setState({
             order: {
                 products: newProducts
             }
         })
+        // this.remoteAdd(productId);
+    }
+
+    remoteAdd(productId){
+        axios({
+                method: 'post',           
+                url: 'api/login',
+                headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
+                data:{
+                    //"sessionKey": this.props.,
+                    "productId": productId,                   
+                }
+            }             
+            )
+            .then(
+                (response)=>{
+                    console.log(response);
+                    var {name, price} = response.data;
+                    let setP =(productId,name,price) =>{                       
+                        let newProduct = {id:productId,name:name,price:price,quantity: 1}
+                        let newProductList = this.state.order.products.concat(newProduct)
+                        this.setState({
+                            order: {
+                                products: newProductList
+                            }
+                        })
+                        
+                    }
+                    setP(productId,name,price);
+                }
+            )
+            .catch(
+                (error)=>{
+                    console.log(error)
+                }
+            )
     }
 
     render() {
@@ -89,13 +141,15 @@ class CurrentOrderPage extends React.Component{
                                })
                             }
                         </ul>
+
+                      
                         <button onClick={this._handleSubmit}>submit</button>
                         <button onClick={this._handleEdit}>edit</button>
                     </>
 
                 )
             }
-            console.log(this.state.order.products)
+            console.log(this.state)
             return (
                 <>
                     <h1>Current Order editing:</h1>
@@ -106,6 +160,8 @@ class CurrentOrderPage extends React.Component{
                             )
                         }
                     </ul>
+                    <input type="text" value={this.state.productId} id="productId" onChange={this._handleChange} placeholder='ProductId'/>
+                    <button onClick={this._handleSearch}>scan</button> 
                     <button onClick={this._handleSave}>save</button>
                 </>
 
