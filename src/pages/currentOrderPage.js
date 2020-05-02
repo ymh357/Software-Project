@@ -92,12 +92,13 @@ class CurrentOrderPage extends React.Component{
     }
 
     remoteAdd(productId){
+        
         axios({
                 method: 'post',           
                 url: 'api/login',
                 headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
                 data:{
-                    //"sessionKey": this.props.,
+                    "sessionKey": sessionStorage.getItem("sessionKey"),
                     "productId": productId,                   
                 }
             }             

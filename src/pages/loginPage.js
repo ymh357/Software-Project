@@ -37,8 +37,10 @@ class LoginPage extends React.Component{
             .then(
                 (response)=>{
                     console.log(response);
+                    let {status, session_id} = response.data;
+                    console.log(status);
                     localStorage.setItem('user', this.state.org_id);
-                    localStorage.setItem('sessionKey', response);
+                    sessionStorage.setItem('sessionKey', session_id);
                 }
             )
             .catch(
