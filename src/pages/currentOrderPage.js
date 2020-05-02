@@ -90,25 +90,25 @@ class CurrentOrderPage extends React.Component{
         })
         // this.remoteAdd(productId);
     }
-
-    remoteAdd(productId){
+    // product price retrieve request 
+    remoteAdd(barcode){
         
         axios({
                 method: 'post',           
-                url: 'api/login',
+                url: 'api/price',
                 headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
                 data:{
                     "sessionKey": sessionStorage.getItem("sessionKey"),
-                    "productId": productId,                   
+                    "barcode": barcode,                   
                 }
             }             
             )
             .then(
                 (response)=>{
                     console.log(response);
-                    var {name, price} = response.data;
-                    let setP =(productId,name,price) =>{                       
-                        let newProduct = {id:productId,name:name,price:price,quantity: 1}
+                    var {name, price, productId} = response.data;
+                    let setP =(barcode, productId,name,price) =>{                       
+                        let newProduct = {id:productId,name:name,price:price,quantity: 1, barcode: barcode}
                         let newProductList = this.state.order.products.concat(newProduct)
                         this.setState({
                             order: {
@@ -117,7 +117,7 @@ class CurrentOrderPage extends React.Component{
                         })
                         
                     }
-                    setP(productId,name,price);
+                    setP(barcode,productId,name,price);
                 }
             )
             .catch(

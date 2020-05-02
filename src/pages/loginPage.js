@@ -22,7 +22,7 @@ class LoginPage extends React.Component{
     }
 
     _handleSubmit(e){
-        //e.preventDefault();//test need
+        e.preventDefault();//test need
         axios({
                 method: 'post',           
                 url: 'api/login',
