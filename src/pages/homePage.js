@@ -1,6 +1,7 @@
 import React from "react"
 import {Link, withRouter} from 'react-router-dom'
 import homeStyle from '../css/home.module.css'
+import Logout from '../components/Logout'
 
 
 class HomePage extends React.Component{
@@ -10,6 +11,7 @@ class HomePage extends React.Component{
         if(localStorage.getItem('user')){
             return (
                 <>
+                 <Logout className={homeStyle.logoutBtn}></Logout>
                     <h1>Home</h1>
                     <div className={homeStyle.menu}>
                         <div className={homeStyle.item}>
@@ -45,6 +47,7 @@ class HomePage extends React.Component{
                             </div>
                         </div>
                     </div>
+                   
 
                 </>
 

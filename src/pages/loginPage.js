@@ -22,7 +22,7 @@ class LoginPage extends React.Component{
     }
 
     _handleSubmit(e){
-        //e.preventDefault();//test need
+        e.preventDefault();//test need
         axios({
                 method: 'post',           
                 url: 'api/login',
@@ -41,6 +41,8 @@ class LoginPage extends React.Component{
                     console.log(status);
                     localStorage.setItem('user', this.state.org_id);
                     sessionStorage.setItem('sessionKey', session_id);
+                    this.setState({
+                    })
                 }
             )
             .catch(

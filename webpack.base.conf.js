@@ -32,11 +32,15 @@ module.exports = {
         ]
     },
     devServer: {
+        host: '0.0.0.0',
         historyApiFallback: true,
         proxy: {
-        '/api/*':'http://52.68.78.115:5000',
-        changeOrigin: true,
-        secure: false
+        '/api/*':{
+            target: 'http://backend:5000',
+            changeOrigin: true,
+            secure: false
+        }
+
         }
     },
     plugins:[
