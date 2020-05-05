@@ -52,8 +52,15 @@ class CurrentOrderPage extends React.Component{
     _handleSearch(e){
         e.preventDefault();
         let scanCode = parseInt(this.state.productId);
-        this.add(scanCode);
+        const res = this.state.order.products.some(item => { return item.id === scanCode; });
+        if (res){
+            this.add(scanCode);
+        }
+        else{            
+            this.remoteAdd(scanCode);
+        }
     }
+
     reduce(productId){
         let newProducts = this.state.order.products.map(p=>{
             if(+p.id === productId){
@@ -92,7 +99,6 @@ class CurrentOrderPage extends React.Component{
     }
     // product price retrieve request 
     remoteAdd(barcode){
-        
         axios({
                 method: 'post',           
                 url: 'api/price',
