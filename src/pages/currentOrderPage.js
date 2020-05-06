@@ -11,7 +11,7 @@ class CurrentOrderPage extends React.Component{
         this.state = {
             order,
             edit: false,
-            productId:0,
+            barcode:0,
         }
         this._handleEdit = this._handleEdit.bind(this)
         this._handleSubmit = this._handleSubmit.bind(this)
@@ -27,7 +27,7 @@ class CurrentOrderPage extends React.Component{
         let id = orders[orders.length-1].id
         orders.push({id:id+1,...this.state.order})
         localStorage.setItem('orders', JSON.stringify(orders))
-
+        
         this.props.history.push('/')
     }
 
@@ -51,8 +51,11 @@ class CurrentOrderPage extends React.Component{
     }
     _handleSearch(e){
         e.preventDefault();
-        let scanCode = parseInt(this.state.productId);
-        const res = this.state.order.products.some(item => { return item.id === scanCode; });
+        let scanCode = parseInt(this.state.barcode);
+        console.log(scanCode);
+        const res = this.state.order.products.some(item => { return item.barcode == scanCode; });
+        console.log(this.state.order.products);
+        console.log(res);
         if (res){
             this.add(scanCode);
         }
@@ -61,9 +64,9 @@ class CurrentOrderPage extends React.Component{
         }
     }
 
-    reduce(productId){
+    reduce(barcode){
         let newProducts = this.state.order.products.map(p=>{
-            if(+p.id === productId){
+            if(+p.barcode === barcode){
                 let newP = {...p}
                 if(newP.quantity > 0){
                     newP.quantity --
@@ -80,10 +83,10 @@ class CurrentOrderPage extends React.Component{
         })
     }
 
-    add(productId){
-        console.log("add"+productId)
+    add(barcode){
+        console.log("add"+barcode)
         let newProducts = this.state.order.products.map(p=>{
-            if(+p.id === productId){
+            if(+p.barcode === barcode){
                 let newP = {...p}
                 newP.quantity ++
                 return newP
@@ -112,9 +115,9 @@ class CurrentOrderPage extends React.Component{
             .then(
                 (response)=>{
                     console.log(response);
-                    var {name, price, productId} = response.data;
-                    let setP =(barcode, productId,name,price) =>{                       
-                        let newProduct = {id:productId,name:name,price:price,quantity: 1, barcode: barcode}
+                    var {productname, price, productId, status} = response.data;
+                    let setP =(barcode, productId,productname,price) =>{                       
+                        let newProduct = {id:productId,name:productname,price:price,quantity: 1, barcode: barcode}
                         let newProductList = this.state.order.products.concat(newProduct)
                         this.setState({
                             order: {
@@ -123,7 +126,9 @@ class CurrentOrderPage extends React.Component{
                         })
                         
                     }
-                    setP(barcode,productId,name,price);
+                    console.log(status);
+                    if (status===true){setP(barcode,parseInt(productId),productname,price);}
+                    else{alert("invalid barcode")}
                 }
             )
             .catch(
@@ -135,7 +140,7 @@ class CurrentOrderPage extends React.Component{
 
     render() {
         if(localStorage.getItem('user')){
-            if(!this.state.edit){
+            if(!this.state.edit && this.state.order.products!=null){
                 return (
                     <>
                         <h1>Current Order:</h1>
@@ -157,17 +162,18 @@ class CurrentOrderPage extends React.Component{
                 )
             }
             console.log(this.state)
+            
             return (
                 <>
                     <h1>Current Order editing:</h1>
                     <ul>
-                        {
+                        {   
                             this.state.order.products.map(e=>
-                                <Product product={e} key={e.id} edit toReduce={this.reduce} toAdd={this.add}></Product>
+                                <Product product={e} key={e.barcode} edit toReduce={this.reduce} toAdd={this.add}></Product>
                             )
                         }
                     </ul>
-                    <input type="text" value={this.state.productId} id="productId" onChange={this._handleChange} placeholder='ProductId'/>
+                    <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode'/>
                     <button onClick={this._handleSearch}>scan</button> 
                     <button onClick={this._handleSave}>save</button>
                 </>
