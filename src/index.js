@@ -41,12 +41,7 @@ class App extends React.Component {
         if(!localStorage.getItem('current_order')){
 
             localStorage.setItem('current_order', JSON.stringify({
-                products:[
-                    {id: 100, name: 'Milk', quantity: 2, price: 50},
-                    {id: 101, name: 'Burger', quantity: 3, price: 60},
-                    {id: 102, name: 'The shy', quantity: 1, price: 10},
-                    {id: 103, name: 'Energy Drink', quantity: 1, price: 10}
-                ]
+                products:[]
             }))
         }
     }

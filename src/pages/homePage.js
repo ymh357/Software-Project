@@ -12,7 +12,7 @@ class HomePage extends React.Component{
         if(localStorage.getItem('user')){
             return (
                 <>
-<h1>Home</h1>
+                    <h1>Home</h1>
                     <div className={homeStyle.menu}>
                         <div className={homeStyle.item}>
                             <div className={homeStyle.imgBlock}>
