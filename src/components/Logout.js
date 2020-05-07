@@ -41,6 +41,7 @@ class logout extends Component {
 
     render() {
         if (this.state.isLogout){
+            this.state.isLogout = false
             return <Redirect to = {{ pathname: "/login" }} />
         }
         return (
