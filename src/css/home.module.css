@@ -35,6 +35,17 @@ h1{
     height: 90%;
     max-width: 100%;
 }
+.logoutBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    align-items: center;
+    display: flex;
+  }
+.logoutBtn div{
+    padding-right: 3px;
+}
 @media only screen and (max-width: 480px) {
     .item{
         width:100%;

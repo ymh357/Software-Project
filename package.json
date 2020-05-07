@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.conf.js",
-    "build": "webpack --config webpack.prod.conf.js"
+    "build": "webpack --config webpack.prod.conf.js",
+    "test": "react-scripts test"
   },
   "author": "Minghao YU",
   "license": "ISC",
@@ -17,6 +18,9 @@
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.5.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.4.4",
     "html-webpack-plugin": "^4.2.0",
     "react-bulma-components": "^3.2.0",
     "style-loader": "^1.1.4",
@@ -27,8 +31,17 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "babel-jest": "^26.0.1",
+    "jest": "^26.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2"
+    "react-icons": "^3.10.0",
+    "react-router-dom": "^5.1.2",
+    "react-test-renderer": "^16.13.1"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }
