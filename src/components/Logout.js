@@ -4,6 +4,7 @@ import {FaSignOutAlt} from 'react-icons/fa';
 import axios from 'axios';
 import {withRouter, Redirect} from 'react-router-dom'
 
+
 class logout extends Component {
     constructor(props) {
         super(props)
@@ -48,7 +49,7 @@ class logout extends Component {
                         onClick={this._handleClick}
                         className={this.props.className}
                         >
-                    <div>logout</div>
+                    {this.props.children}
                     <FaSignOutAlt />
                     
                 </button>
