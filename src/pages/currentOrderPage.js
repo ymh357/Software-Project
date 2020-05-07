@@ -17,7 +17,7 @@ class CurrentOrderPage extends React.Component{
         this._handleSubmit = this._handleSubmit.bind(this)
         this._handleChange = this._handleChange.bind(this)
         this._handleSave = this._handleSave.bind(this)
-        this._handleSearch = this._handleSearch.bind(this)
+        this._handleScan = this._handleScan.bind(this)
         this.reduce = this.reduce.bind(this)
         this.add = this.add.bind(this)
     }
@@ -49,7 +49,9 @@ class CurrentOrderPage extends React.Component{
             edit: false
         })
     }
-    _handleSearch(e){
+
+
+    _handleScan(e){
         e.preventDefault();
         let scanCode = parseInt(this.state.barcode);
         console.log(scanCode);
@@ -174,7 +176,10 @@ class CurrentOrderPage extends React.Component{
                         }
                     </ul>
                     <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode'/>
-                    <button onClick={this._handleSearch}>scan</button> 
+                    {/* TODO: handle searching when changing the input value instead of clicking the scan button
+                        TODO: And the scan button handles the barcode scanner input 
+                     */}
+                    <button onClick={this._handleScan}>scan</button> 
                     <button onClick={this._handleSave}>save</button>
                 </>
 
