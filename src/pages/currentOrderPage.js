@@ -27,7 +27,48 @@ class CurrentOrderPage extends React.Component{
         let id = orders[orders.length-1].id
         orders.push({id:id+1,...this.state.order})
         localStorage.setItem('orders', JSON.stringify(orders))
+        let lines =[]
+        this.state.order.products.map(item => {
+            let line = {
+                lineType:"PRODUCT",
+                productCode:item.id,
+                quantity:item.quantity,
+                priceTotalIncTax:item.price*item.quantity,
+            }
+            lines.push(line)
         
+        })
+        console.log(lines);
+        axios({
+                method: 'post',           
+                url: 'api/purchase',
+                headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
+                data:{
+                    "sessionKey": sessionStorage.getItem("sessionKey"),
+                    "lines": lines,                   
+                }
+            }             
+            )
+            .then(
+                (response)=>{
+                    console.log(response);
+                    let {result, puchaseID, resultCode} = response.data;
+                    if (result=="SUCCESS"){
+                        //TODO find another method to store all puchaseID, now only the latest puchaseID will be stored.
+                        localStorage.setItem("puchaseID",puchaseID)
+                    }
+                    else{
+                        console.log(resultCode)
+                        //alert(resultCode)
+                    }
+                }
+            )
+            .catch(
+                (error)=>{
+                    console.log(error)
+                }
+            )
+
         this.props.history.push('/')
     }
 
@@ -55,6 +96,7 @@ class CurrentOrderPage extends React.Component{
         e.preventDefault();
         let scanCode = parseInt(this.state.barcode);
         console.log(scanCode);
+        // TODO: fix bug caused by asynchronous calls, the following judgement will result in this bug. 
         const res = this.state.order.products.some(item => { return item.barcode == scanCode; });
         console.log(this.state.order.products);
         console.log(res);
@@ -177,7 +219,7 @@ class CurrentOrderPage extends React.Component{
                     </ul>
                     <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode'/>
                     {/* TODO: handle searching when changing the input value instead of clicking the scan button
-                        TODO: And the scan button handles the barcode scanner input 
+                        TODO: And the scan button handles the barcode scanner input
                      */}
                     <button onClick={this._handleScan}>scan</button> 
                     <button onClick={this._handleSave}>save</button>
