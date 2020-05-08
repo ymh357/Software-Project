@@ -1,6 +1,7 @@
 import React from "react"
 import {withRouter} from 'react-router-dom'
 import Product from "../components/product";
+import Summary from "../components/Summary";
 import axios from 'axios';
 
 class CurrentOrderPage extends React.Component{
@@ -109,7 +110,11 @@ class CurrentOrderPage extends React.Component{
     }
 
     reduce(barcode){
-        let newProducts = this.state.order.products.map(p=>{
+        let filterProducts = this.state.order.products.filter(p=>{
+            return (p.barcode!=barcode)||(p.barcode==barcode && p.quantity!=1)
+        })
+        console.log(filterProducts)
+        let newProducts = filterProducts.map(p=>{
             if(+p.barcode === barcode){
                 let newP = {...p}
                 if(newP.quantity > 0){
@@ -197,6 +202,7 @@ class CurrentOrderPage extends React.Component{
                                })
                             }
                         </ul>
+                        <Summary products={this.state.order.products}></Summary>
 
                       
                         <button onClick={this._handleSubmit}>submit</button>

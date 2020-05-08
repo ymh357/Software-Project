@@ -9,6 +9,7 @@ class HomePage extends React.Component{
     render() {
         console.log(homeStyle)
         if(localStorage.getItem('user')){
+            //TODO: use another way to load the img to avoid repeated downloads
             return (
                 <>
                     <h1>Home</h1>
