@@ -32,9 +32,9 @@ class CurrentOrderPage extends React.Component{
         this.state.order.products.map(item => {
             let line = {
                 lineType:"PRODUCT",
-                productCode:item.id,
+                productCode:item.id.toString(),
                 quantity:item.quantity,
-                priceTotalIncTax:item.price*item.quantity,
+                priceTotalTax:item.price*item.quantity,
             }
             lines.push(line)
         
@@ -53,14 +53,15 @@ class CurrentOrderPage extends React.Component{
             .then(
                 (response)=>{
                     console.log(response);
-                    let {result, puchaseID, resultCode} = response.data;
+                    let {result, puchaseID, status} = response.data;
                     if (result=="SUCCESS"){
                         //TODO find another method to store all puchaseID, now only the latest puchaseID will be stored.
                         localStorage.setItem("puchaseID",puchaseID)
                     }
                     else{
-                        console.log(resultCode)
-                        //alert(resultCode)
+                        console.log(status)
+                        alert(status)
+                        this.props.history.push('/')
                     }
                 }
             )
@@ -70,7 +71,6 @@ class CurrentOrderPage extends React.Component{
                 }
             )
 
-        this.props.history.push('/')
     }
 
     _handleChange(e){
@@ -202,7 +202,7 @@ class CurrentOrderPage extends React.Component{
                                })
                             }
                         </ul>
-                        <Summary products={this.state.order.products}></Summary>
+                        <Summary products={this.state.order.products    }></Summary>
 
                       
                         <button onClick={this._handleSubmit}>submit</button>
