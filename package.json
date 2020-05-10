@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.conf.js",
-    "build": "webpack --config webpack.prod.conf.js",
-    "test": "react-scripts test"
+    "build": "rm -rf dist && webpack --config webpack.prod.conf.js && webpack --mode production --config webpack.server.conf.js",
+    "test": "react-scripts test",
+    "express": "node ./dist/server.js"
   },
   "author": "Minghao YU",
   "license": "ISC",
@@ -24,14 +25,18 @@
     "html-webpack-plugin": "^4.2.0",
     "react-bulma-components": "^3.2.0",
     "style-loader": "^1.1.4",
-    "webpack": "^4.42.1",
+    "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
     "axios": "^0.19.2",
     "babel-jest": "^26.0.1",
+    "express": "^4.17.1",
+    "express-http-proxy": "^1.6.0",
+    "http-proxy-middleware": "^1.0.3",
     "jest": "^26.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
