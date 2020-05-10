@@ -6,7 +6,7 @@ npm install react-bulma-components
 
 
 ### For NPM usage:
-`npm install` then `npm run start` to run the App.
+`npm install` then `npm run start` to run the App in dev mode.
 
 Make sure to have react-dom `npm install react react-dom`
 
@@ -22,10 +22,14 @@ You will also see any lint errors in the console.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
+Builds the app for production to the `dist` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run express`
+
+Serve page with production server express
