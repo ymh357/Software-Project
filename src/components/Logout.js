@@ -28,7 +28,7 @@ class logout extends Component {
         .then(
             (response)=>{
                 console.log(response);
-                localStorage.removeItem('user')
+                sessionStorage.removeItem('user')
                 this.setState({ isLogout: true })
             }
         )

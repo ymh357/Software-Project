@@ -188,7 +188,7 @@ class CurrentOrderPage extends React.Component{
     }
 
     render() {
-        if(localStorage.getItem('user')){
+        if(sessionStorage.getItem('user')){
             if(!this.state.edit && this.state.order.products!=null){
                 return (
                     <>
