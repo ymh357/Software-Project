@@ -1,6 +1,7 @@
 import React from 'react';
 import style from '../css/navigation_bar.css'
 import {withRouter} from 'react-router-dom'
+import Logout from '../components/Logout'
 
 class NavigationBar extends React.PureComponent{
 //18010130155
@@ -25,6 +26,7 @@ class NavigationBar extends React.PureComponent{
                     <a href="/viewHistoryOrder" className={this.props.location.pathname === '/viewHistoryOrder'? style.active : ''}>History</a>
                     <a href="/order" className={this.props.location.pathname === '/order'? style.active : ''}>Order</a>
                     <a href="/cart" className={this.props.location.pathname === '/cart'? style.active : ''}>Cart</a>
+                    <Logout className={style.logoutBtn }>logout</Logout>
                     <a href="#" className={style.icon} onClick={this.toggle}>
                         pop
                     </a>

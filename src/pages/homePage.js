@@ -2,6 +2,7 @@ import React from "react"
 import {Link, withRouter} from 'react-router-dom'
 import { Title } from "../components/Title"
 import homeStyle from '../css/home.module.css'
+import Logout from '../components/Logout'
 
 
 class HomePage extends React.Component{

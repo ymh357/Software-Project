@@ -42,8 +42,8 @@ class LoginPage extends React.Component{
                     alert(status);
                     localStorage.setItem('user', this.state.username);
                     sessionStorage.setItem('sessionKey', session_id);
-                    this.props.history.push('/')
-                    // Redirect user
+                    this.setState({
+                    })
                 }
             )
             .catch(
