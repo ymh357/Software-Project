@@ -66,7 +66,7 @@ class LoginPage extends React.Component{
                 <form onSubmit={this._handleSubmit} className={loginStyle.loginForm}>
                     <input type="text" value={this.state.username} id="username" onChange={this._handleChange} placeholder='Username'/>
                     <input type="text" value={this.state.password} id="password"  onChange={this._handleChange} placeholder='Password'/>
-                    <button type="submit" className={loginStyle.loginBtn}>Login</button>
+                    <button type="submit" className={loginStyle.loginBtn}>Logout</button>
                 </form>
             </div>
 
