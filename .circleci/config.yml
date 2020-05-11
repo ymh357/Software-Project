@@ -1,0 +1,50 @@
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
+jobs:
+  build-and-test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: 
+                name: Build
+                command: |
+                  npm install
+                  npm run build
+  deploy_to_development:
+    machine:
+      image: ubuntu-1604:201903-01
+    
+    steps:
+      - checkout
+      - run:
+        
+          name: Deploy Over SSH
+          command: |
+            chmod 400 Team2122.pem
+            ssh -i 'Team2122.pem' -o "StrictHostKeyChecking no" ubuntu@ec2-52-68-78-115.ap-northeast-1.compute.amazonaws.com " killall node || echo "Process was not running." && cd Frontend && git pull && npm install && npm run build"
+            ssh -i 'Team2122.pem' -o "StrictHostKeyChecking no" -f ubuntu@ec2-52-68-78-115.ap-northeast-1.compute.amazonaws.com "cd Frontend && npm run express > /dev/null && exit"
+      - run:
+          name: Waiting for frontend to be ready
+          command: |
+            for i in `seq 1 10`;
+            do
+              nc -z ec2-52-68-78-115.ap-northeast-1.compute.amazonaws.com 3000 && echo Success && exit 0
+              echo -n .
+              sleep 10
+            done
+            echo Failed waiting for Postgress && exit 1
+workflows:
+    build-and-test:
+      jobs:
+        - build-and-test
+        - deploy_to_development:
+            requires:
+              - build-and-test
+            filters:
+              branches:
+                only:
+                  - master
