@@ -12,7 +12,7 @@ app.get('*', (req, res) => {
     res.sendFile(HTML_FILE)
 })
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 80
 app.listen(PORT, () => {
     console.log(DIST_DIR)
     console.log(`App listening to ${PORT}....`)
