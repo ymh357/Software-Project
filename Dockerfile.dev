@@ -4,5 +4,6 @@ WORKDIR /root/frontend
 COPY ./ /root/frontend
 RUN npm install
 RUN npm install ip --save-dev 
+RUN npm run build
 
-CMD ["npm", "start"]
+CMD /bin/sh -c "npm run express"
