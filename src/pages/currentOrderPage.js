@@ -12,7 +12,7 @@ class CurrentOrderPage extends React.Component{
         this.state = {
             order,
             edit: false,
-            barcode:0,
+            barcode:'',
         }
         this._handleEdit = this._handleEdit.bind(this)
         this._handleSubmit = this._handleSubmit.bind(this)
@@ -92,21 +92,26 @@ class CurrentOrderPage extends React.Component{
         })
     }
 
-
     _handleScan(e){
         e.preventDefault();
         let scanCode = parseInt(this.state.barcode);
         console.log(scanCode);
         // TODO: fix bug caused by asynchronous calls, the following judgement will result in this bug. 
+        
         const res = this.state.order.products.some(item => { return item.barcode == scanCode; });
         console.log(this.state.order.products);
         console.log(res);
+
         if (res){
             this.add(scanCode);
         }
         else{            
             this.remoteAdd(scanCode);
         }
+        this.setState({
+            barcode:''
+        })
+        this.myInput.focus()
     }
 
     reduce(barcode){
@@ -223,10 +228,12 @@ class CurrentOrderPage extends React.Component{
                             )
                         }
                     </ul>
-                    <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode'/>
+                    <form onSubmit={(e) => this._handleScan(e,this.state.barcode)}>
+                    <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode' ref={myInput=>this.myInput=myInput}/>
                     {/* TODO: handle searching when changing the input value instead of clicking the scan button
                         TODO: And the scan button handles the barcode scanner input
                      */}
+                    </form>
                     <button onClick={this._handleScan}>scan</button> 
                     <button onClick={this._handleSave}>save</button>
                 </>
