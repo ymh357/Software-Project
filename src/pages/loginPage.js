@@ -40,7 +40,7 @@ class LoginPage extends React.Component{
                     let {status, session_id} = response.data;
                     console.log(status);
                     alert(status);
-                    if(status=="LOGIN_SUCCESS"||status=="LOGIN_EXSIT"){
+                    if(status=="LOGIN_SUCCESS"||status=="LOGIN_EXIST"){
                         sessionStorage.setItem('user', this.state.username);
                         sessionStorage.setItem('sessionKey', session_id);
                         this.setState({

@@ -186,7 +186,12 @@ class CurrentOrderPage extends React.Component{
                     }
                     console.log(status);
                     if (status===true){
-                        setP(barcode,productCode,productname,price,productId)
+                        if(this.state.order.products.some(item => { return item.barcode == barcode; })){
+                            this.add(barcode)
+                        }
+                        else{
+                            setP(barcode,productCode,productname,price,productId)
+                        }
                     }
                     else{
                         alert("invalid barcode")
