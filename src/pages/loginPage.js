@@ -40,10 +40,12 @@ class LoginPage extends React.Component{
                     let {status, session_id} = response.data;
                     console.log(status);
                     alert(status);
-                    sessionStorage.setItem('user', this.state.username);
-                    sessionStorage.setItem('sessionKey', session_id);
-                    this.setState({
-                    })
+                    if(status=="LOGIN_SUCCESS"||status=="LOGIN_EXSIT"){
+                        sessionStorage.setItem('user', this.state.username);
+                        sessionStorage.setItem('sessionKey', session_id);
+                        this.setState({
+                        })
+                    } 
                 }
             )
             .catch(
