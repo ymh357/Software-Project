@@ -1,15 +1,5 @@
-.cardContainer{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
+
 
 .currentOrder{
-    text-align: center;
-}
-
-.order{
-    border: 1px solid black;
-    padding: 2%;
     text-align: center;
 }

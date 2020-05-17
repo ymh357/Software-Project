@@ -5,8 +5,6 @@ import { ProductsList } from '../components/ProductsList'
 import {withRouter} from 'react-router-dom'
 
 import './Cart.css';
-import 'bulma/css/bulma.css'
-
 
 class Cart extends Component {
 

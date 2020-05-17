@@ -4,7 +4,6 @@ import {withRouter} from 'react-router-dom'
 import Logout from '../components/Logout'
 
 class NavigationBar extends React.PureComponent{
-//18010130155
     constructor(props) {
         super(props)
     }
@@ -24,7 +23,7 @@ class NavigationBar extends React.PureComponent{
                 <div className={style.topnav} id="myTopnav">
                     <a href="/" className={this.props.location.pathname === '/'? style.active : ''}>Home</a>
                     <a href="/viewHistoryOrder" className={this.props.location.pathname === '/viewHistoryOrder'? style.active : ''}>History</a>
-                    <a href="/order" className={this.props.location.pathname === '/order'? style.active : ''}>Order</a>
+                    <a href="/order" className={/^\/order/.test(this.props.location.pathname)? style.active : ''}>Order</a>
                     <a href="/cart" className={this.props.location.pathname === '/cart'? style.active : ''}>Cart</a>
                     <Logout className={style.logoutBtn }>logout</Logout>
                     <a href="#" className={style.icon} onClick={this.toggle}>

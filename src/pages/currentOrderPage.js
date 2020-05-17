@@ -197,12 +197,12 @@ class CurrentOrderPage extends React.Component{
                             {
                                 this.state.order.products.map(e=>{
                                     if(e.quantity>0)
-                                        return <Product product={e} key={e.id}></Product>
+                                        return <Product product={e} key={e.id}/>
                                     return null
                                })
                             }
                         </ul>
-                        <Summary products={this.state.order.products    }></Summary>
+                        <Summary products={this.state.order.products}/>
 
                       
                         <button onClick={this._handleSubmit}>submit</button>

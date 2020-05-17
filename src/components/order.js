@@ -1,7 +1,7 @@
 import React from "react";
 import {withRouter} from 'react-router-dom'
 import Product from './product'
-import style from '../css/current_order.css'
+import style from '../css/order.css'
 
 class Order extends React.Component{
     constructor(props) {
@@ -18,19 +18,15 @@ class Order extends React.Component{
     render() {
         return (
             <li className={style.order}>
-                {this.props.edit && <button onClick={this._handleClick}>Order ID: {this.props.order.id}</button>}
-                {!this.props.edit && `Order ID: ${this.props.order.id}`}
-                Products :
+                <h1>{this.props.edit && <button onClick={this._handleClick}>Order ID: {this.props.order.id}</button>}{!this.props.edit && `Order ID: ${this.props.order.id}`}</h1>
+                <h2>Products :</h2>
                 <ul className={style.cardContainer}>
                     {
                         this.props.order.products.map(product =>
-                            <Product product = {product} key={product.id}></Product>
+                            <Product product = {product} key={product.id}/>
                         )
                     }
                 </ul>
-                Total Price: {this.props.order.products.reduce((acc , cur)=>{
-                    return acc + (cur.price * cur.quantity)
-                }, 0)}
             </li>
         )
     }

@@ -10,17 +10,30 @@ class Product extends React.Component {
     render() {
         return (
             <li className={style.card}>
-                <span>Product barcode: {this.props.product.barcode} </span>
-                <span>Product ID: {this.props.product.id} </span>
-                <span>Product Name: {this.props.product.name}</span>
-                <span>Quantity: {this.props.product.quantity}</span>
-                <span>Price: {this.props.product.price}</span>
-                <span>Total: {`${+this.props.product.price * +this.props.product.quantity}`}</span>
-                {this.props.edit && <span><button onClick={(e)=>{this.props.toReduce(
-                    this.props.product.barcode
-                )}}>-</button> <button onClick={(e)=>{this.props.toAdd(
-                    this.props.product.barcode
-                )}}>+</button></span> }
+                <span className={style.productImage}><img alt={"product image"} src='https://attachments.pjsas.com.au/products/images_large/4908.jpg'/></span>
+                <span className={style.productBasicContainer}>
+                    <span className={style.productBasic}>Product ID: {this.props.product.id} </span>
+                    <span className={style.productBasic}>Product Name: {this.props.product.name}</span>
+                    <span className={style.productBasic}>Price: {this.props.product.price}</span>
+                </span>
+
+                <span className={style.productCustomizeContainer}>
+                    <span className={style.productCustomize}>Total Price: {`${+this.props.product.price * +this.props.product.quantity}`}</span>
+
+                    <span className={style.productCustomize}>
+                        {this.props.edit && <span><button onClick={(e)=>{this.props.toReduce(
+                            this.props.product.barcode
+                        )}}>-</button></span>}
+                        <button disabled>Quantity: {this.props.product.quantity}</button>
+                        {this.props.edit && <span><button onClick={(e)=>{this.props.toAdd(
+                            this.props.product.barcode
+                        )}}>+</button></span> }
+                    </span>
+
+                </span>
+
+
+
             </li>
         )
     }
