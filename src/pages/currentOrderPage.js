@@ -215,7 +215,7 @@ class CurrentOrderPage extends React.Component{
                             {
                                 this.state.order.products.map(e=>{
                                     if(e.quantity>0)
-                                        return <Product product={e} key={e.id}/>
+                                        return <Product product={e} key={e.barcode}/>
                                     return null
                                })
                             }
@@ -243,9 +243,6 @@ class CurrentOrderPage extends React.Component{
                     </ul>
                     <form onSubmit={(e) => this._handleScan(e,this.state.barcode)}>
                     <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode' ref={myInput=>this.myInput=myInput}/>
-                    {/* TODO: handle searching when changing the input value instead of clicking the scan button
-                        TODO: And the scan button handles the barcode scanner input
-                     */}
                     </form>
                     <button onClick={this._handleScan}>scan</button> 
                     <button onClick={this._handleSave}>save</button>

@@ -12,7 +12,7 @@ class HistoryOrdersPage extends React.Component{
         super(props);
 
         this.state = {
-            orders: JSON.parse(sessionStorage.getItem('orders')),
+            orders: JSON.parse(localStorage.getItem('orders')),
         }
     }
 

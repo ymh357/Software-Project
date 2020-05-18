@@ -24,7 +24,6 @@ class NavigationBar extends React.PureComponent{
                     <a href="/" className={this.props.location.pathname === '/'? style.active : ''}>Home</a>
                     <a href="/viewHistoryOrder" className={this.props.location.pathname === '/viewHistoryOrder'? style.active : ''}>History</a>
                     <a href="/order" className={/^\/order/.test(this.props.location.pathname)? style.active : ''}>Order</a>
-                    <a href="/cart" className={this.props.location.pathname === '/cart'? style.active : ''}>Cart</a>
                     <Logout className={style.logoutBtn }>logout</Logout>
                     <a href="#" className={style.icon} onClick={this.toggle}>
                         pop
