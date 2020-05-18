@@ -12,7 +12,7 @@ class CurrentOrderPage extends React.Component{
         this.state = {
             order,
             edit: false,
-            barcode:0,
+            barcode:'',
         }
         this._handleEdit = this._handleEdit.bind(this)
         this._handleSubmit = this._handleSubmit.bind(this)
@@ -32,9 +32,12 @@ class CurrentOrderPage extends React.Component{
         this.state.order.products.map(item => {
             let line = {
                 lineType:"PRODUCT",
-                productCode:item.id.toString(),
+                productId:item.keyProdcutID,
+                productCode:item.id,
                 quantity:item.quantity,
-                priceTotalTax:item.price*item.quantity,
+                priceExTax:item.price,
+                priceTotalExTax:item.price*item.quantity,
+                productName:item.name,
             }
             lines.push(line)
         
@@ -53,15 +56,16 @@ class CurrentOrderPage extends React.Component{
             .then(
                 (response)=>{
                     console.log(response);
-                    let {result, puchaseID, status} = response.data;
+                    let {result, puchaseID, resultCode} = response.data;
                     if (result=="SUCCESS"){
                         //TODO find another method to store all puchaseID, now only the latest puchaseID will be stored.
                         localStorage.setItem("puchaseID",puchaseID)
+                        alert(result)
+                        this.props.history.push('/')
                     }
                     else{
-                        console.log(status)
-                        alert(status)
-                        this.props.history.push('/')
+                        console.log(resultCode)
+                        alert(resultCode)                       
                     }
                 }
             )
@@ -92,21 +96,26 @@ class CurrentOrderPage extends React.Component{
         })
     }
 
-
     _handleScan(e){
         e.preventDefault();
         let scanCode = parseInt(this.state.barcode);
         console.log(scanCode);
         // TODO: fix bug caused by asynchronous calls, the following judgement will result in this bug. 
+        
         const res = this.state.order.products.some(item => { return item.barcode == scanCode; });
         console.log(this.state.order.products);
         console.log(res);
+
         if (res){
             this.add(scanCode);
         }
         else{            
             this.remoteAdd(scanCode);
         }
+        this.setState({
+            barcode:''
+        })
+        this.myInput.focus()
     }
 
     reduce(barcode){
@@ -164,9 +173,9 @@ class CurrentOrderPage extends React.Component{
             .then(
                 (response)=>{
                     console.log(response);
-                    var {productname, price, productId, status} = response.data;
-                    let setP =(barcode, productId,productname,price) =>{                       
-                        let newProduct = {id:productId,name:productname,price:price,quantity: 1, barcode: barcode}
+                    var {productname, price, productId, status,productCode} = response.data
+                    let setP =(barcode, productCode,productname,price,productId) =>{                       
+                        let newProduct = {id:productCode,name:productname,price:price,quantity: 1, barcode: barcode,keyProdcutID:productId}
                         let newProductList = this.state.order.products.concat(newProduct)
                         this.setState({
                             order: {
@@ -176,8 +185,17 @@ class CurrentOrderPage extends React.Component{
                         
                     }
                     console.log(status);
-                    if (status===true){setP(barcode,parseInt(productId),productname,price);}
-                    else{alert("invalid barcode")}
+                    if (status===true){
+                        if(this.state.order.products.some(item => { return item.barcode == barcode; })){
+                            this.add(barcode)
+                        }
+                        else{
+                            setP(barcode,productCode,productname,price,productId)
+                        }
+                    }
+                    else{
+                        alert("invalid barcode")
+                    }
                 }
             )
             .catch(
@@ -188,7 +206,7 @@ class CurrentOrderPage extends React.Component{
     }
 
     render() {
-        if(localStorage.getItem('user')){
+        if(sessionStorage.getItem('user')){
             if(!this.state.edit && this.state.order.products!=null){
                 return (
                     <>
@@ -223,10 +241,12 @@ class CurrentOrderPage extends React.Component{
                             )
                         }
                     </ul>
-                    <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode'/>
+                    <form onSubmit={(e) => this._handleScan(e,this.state.barcode)}>
+                    <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode' ref={myInput=>this.myInput=myInput}/>
                     {/* TODO: handle searching when changing the input value instead of clicking the scan button
                         TODO: And the scan button handles the barcode scanner input
                      */}
+                    </form>
                     <button onClick={this._handleScan}>scan</button> 
                     <button onClick={this._handleSave}>save</button>
                 </>

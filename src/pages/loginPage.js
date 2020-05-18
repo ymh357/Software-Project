@@ -40,10 +40,12 @@ class LoginPage extends React.Component{
                     let {status, session_id} = response.data;
                     console.log(status);
                     alert(status);
-                    localStorage.setItem('user', this.state.username);
-                    sessionStorage.setItem('sessionKey', session_id);
-                    this.setState({
-                    })
+                    if(status=="LOGIN_SUCCESS"||status=="LOGIN_EXIST"){
+                        sessionStorage.setItem('user', this.state.username);
+                        sessionStorage.setItem('sessionKey', session_id);
+                        this.setState({
+                        })
+                    } 
                 }
             )
             .catch(
@@ -55,7 +57,7 @@ class LoginPage extends React.Component{
 
     render() {
 
-        if(localStorage.getItem('user')){
+        if(sessionStorage.getItem('user')){
             this.props.history.push('/')
         }
         return (

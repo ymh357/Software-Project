@@ -12,13 +12,13 @@ class HistoryOrdersPage extends React.Component{
         super(props);
 
         this.state = {
-            orders: JSON.parse(localStorage.getItem('orders')),
+            orders: JSON.parse(sessionStorage.getItem('orders')),
         }
     }
 
     render() {
        
-        if(localStorage.getItem('user')){
+        if(sessionStorage.getItem('user')){
            
             const orders = this.state.orders.map(order =>
                <OrderItem order={order} key={order.id}/>
