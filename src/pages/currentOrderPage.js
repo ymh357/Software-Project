@@ -1,7 +1,11 @@
 import React from "react"
 import {withRouter} from 'react-router-dom'
 import Product from "../components/product";
+<<<<<<< HEAD
 import Summary from "../components/Summary";
+=======
+//import Summary from "../components/Summary";
+>>>>>>> removed unnecesary staged
 import axios from 'axios';
 
 class CurrentOrderPage extends React.Component{
@@ -14,15 +18,23 @@ class CurrentOrderPage extends React.Component{
             edit: false,
             barcode:'',
         }
+<<<<<<< HEAD
         this._handleEdit = this._handleEdit.bind(this)
         this._handleSubmit = this._handleSubmit.bind(this)
         this._handleChange = this._handleChange.bind(this)
         this._handleSave = this._handleSave.bind(this)
+=======
+        //this._handleEdit = this._handleEdit.bind(this)
+        //this._handleSubmit = this._handleSubmit.bind(this)
+        this._handleChange = this._handleChange.bind(this)
+        //this._handleSave = this._handleSave.bind(this)
+>>>>>>> removed unnecesary staged
         this._handleScan = this._handleScan.bind(this)
         this.reduce = this.reduce.bind(this)
         this.add = this.add.bind(this)
     }
 
+<<<<<<< HEAD
     _handleSubmit(e){
         let orders = JSON.parse(localStorage.getItem('orders'))
         let id = orders[orders.length-1].id
@@ -83,18 +95,70 @@ class CurrentOrderPage extends React.Component{
             [id]: e.target.value
         })
     }
+=======
+    // _handleSubmit(e){
+    //     let orders = JSON.parse(localStorage.getItem('orders'))
+    //     let id = orders[orders.length-1].id
+    //     orders.push({id:id+1,...this.state.order})
+    //     localStorage.setItem('orders', JSON.stringify(orders))
+    //     let lines =[]
+    //     this.state.order.products.map(item => {
+    //         let line = {
+    //             lineType:"PRODUCT",
+    //             productId:item.keyProdcutID,
+    //             productCode:item.id,
+    //             quantity:item.quantity,
+    //             priceExTax:item.price,
+    //             priceTotalExTax:item.price*item.quantity,
+    //             productName:item.name,
+    //         }
+    //         lines.push(line)
+        
+    //     })
+    //     console.log(lines);
+    //     axios({
+    //             method: 'post',           
+    //             url: 'api/purchase',
+    //             headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
+    //             data:{
+    //                 "sessionKey": sessionStorage.getItem("sessionKey"),
+    //                 "lines": lines,                   
+    //             }
+    //         }             
+    //         )
+    //         .then(
+    //             (response)=>{
+    //                 console.log(response);
+    //                 let {result, puchaseID, resultCode} = response.data;
+    //                 if (result=="SUCCESS"){
+    //                     //TODO find another method to store all puchaseID, now only the latest puchaseID will be stored.
+    //                     localStorage.setItem("puchaseID",puchaseID)
+    //                     alert(result)
+    //                     this.props.history.push('/')
+    //                 }
+    //                 else{
+    //                     console.log(resultCode)
+    //                     alert(resultCode)                       
+    //                 }
+    //             }
+    //         )
+    //         .catch(
+    //             (error)=>{
+    //                 console.log(error)
+    //             }
+    //         )
 
-    _handleEdit(e){
+    // }
+>>>>>>> removed unnecesary staged
+
+    _handleChange(e){
+        let id = e.target.id
         this.setState({
-            edit: true
+            [id]: e.target.value
         })
     }
 
-    _handleSave(e){
-        this.setState({
-            edit: false
-        })
-    }
+ 
 
     _handleScan(e){
         e.preventDefault();
@@ -118,6 +182,31 @@ class CurrentOrderPage extends React.Component{
         this.myInput.focus()
     }
 
+<<<<<<< HEAD
+    _handleScan(e){
+        e.preventDefault();
+        let scanCode = parseInt(this.state.barcode);
+        console.log(scanCode);
+        // TODO: fix bug caused by asynchronous calls, the following judgement will result in this bug. 
+        
+        const res = this.state.order.products.some(item => { return item.barcode == scanCode; });
+        console.log(this.state.order.products);
+        console.log(res);
+
+        if (res){
+            this.add(scanCode);
+        }
+        else{            
+            this.remoteAdd(scanCode);
+        }
+        this.setState({
+            barcode:''
+        })
+        this.myInput.focus()
+    }
+
+=======
+>>>>>>> removed unnecesary staged
     reduce(barcode){
         let filterProducts = this.state.order.products.filter(p=>{
             return (p.barcode!=barcode)||(p.barcode==barcode && p.quantity!=1)
@@ -162,7 +251,11 @@ class CurrentOrderPage extends React.Component{
     remoteAdd(barcode){
         axios({
                 method: 'post',           
+<<<<<<< HEAD
                 url: 'api/price',
+=======
+                url: 'http://52.68.78.115:5000/api/price',
+>>>>>>> removed unnecesary staged
                 headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
                 data:{
                     "sessionKey": sessionStorage.getItem("sessionKey"),
@@ -207,7 +300,11 @@ class CurrentOrderPage extends React.Component{
 
     render() {
         if(sessionStorage.getItem('user')){
+<<<<<<< HEAD
            if(!this.state.edit && this.state.order.products!=null){
+=======
+           /* if(!this.state.edit && this.state.order.products!=null){
+>>>>>>> removed unnecesary staged
                 return (
                     <>
                         <h1>Current Order:</h1>
@@ -229,7 +326,11 @@ class CurrentOrderPage extends React.Component{
 
                 )
             }
+<<<<<<< HEAD
             console.log(this.state)
+=======
+            console.log(this.state) */
+>>>>>>> removed unnecesary staged
             
             return (
                 <>
