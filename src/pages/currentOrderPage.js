@@ -1,7 +1,7 @@
 import React from "react"
 import {withRouter} from 'react-router-dom'
 import Product from "../components/product";
-//import Summary from "../components/Summary";
+import Summary from "../components/Summary";
 import axios from 'axios';
 
 class CurrentOrderPage extends React.Component{
@@ -14,68 +14,69 @@ class CurrentOrderPage extends React.Component{
             edit: false,
             barcode:'',
         }
-        //this._handleEdit = this._handleEdit.bind(this)
-        //this._handleSubmit = this._handleSubmit.bind(this)
+        this._handleEdit = this._handleEdit.bind(this)
+        this._handleSubmit = this._handleSubmit.bind(this)
         this._handleChange = this._handleChange.bind(this)
-        //this._handleSave = this._handleSave.bind(this)
+        this._handleSave = this._handleSave.bind(this)
         this._handleScan = this._handleScan.bind(this)
         this.reduce = this.reduce.bind(this)
         this.add = this.add.bind(this)
     }
 
-    // _handleSubmit(e){
-    //     let orders = JSON.parse(localStorage.getItem('orders'))
-    //     let id = orders[orders.length-1].id
-    //     orders.push({id:id+1,...this.state.order})
-    //     localStorage.setItem('orders', JSON.stringify(orders))
-    //     let lines =[]
-    //     this.state.order.products.map(item => {
-    //         let line = {
-    //             lineType:"PRODUCT",
-    //             productId:item.keyProdcutID,
-    //             productCode:item.id,
-    //             quantity:item.quantity,
-    //             priceExTax:item.price,
-    //             priceTotalExTax:item.price*item.quantity,
-    //             productName:item.name,
-    //         }
-    //         lines.push(line)
+    _handleSubmit(e){
+        let orders = JSON.parse(localStorage.getItem('orders'))
+        let id = orders[orders.length-1].id
+        orders.push({id:id+1,...this.state.order})
+        localStorage.setItem('orders', JSON.stringify(orders))
+        let lines =[]
+        this.state.order.products.map(item => {
+            let line = {
+                lineType:"PRODUCT",
+                productId:item.keyProductCode,
+                productCode:item.id,
+                quantity:item.quantity,
+                priceExTax:item.price,
+                priceTotalExTax:item.price*item.quantity,
+                productName:item.name,
+            }
+            lines.push(line)
         
-    //     })
-    //     console.log(lines);
-    //     axios({
-    //             method: 'post',           
-    //             url: 'api/purchase',
-    //             headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
-    //             data:{
-    //                 "sessionKey": sessionStorage.getItem("sessionKey"),
-    //                 "lines": lines,                   
-    //             }
-    //         }             
-    //         )
-    //         .then(
-    //             (response)=>{
-    //                 console.log(response);
-    //                 let {result, puchaseID, resultCode} = response.data;
-    //                 if (result=="SUCCESS"){
-    //                     //TODO find another method to store all puchaseID, now only the latest puchaseID will be stored.
-    //                     localStorage.setItem("puchaseID",puchaseID)
-    //                     alert(result)
-    //                     this.props.history.push('/')
-    //                 }
-    //                 else{
-    //                     console.log(resultCode)
-    //                     alert(resultCode)                       
-    //                 }
-    //             }
-    //         )
-    //         .catch(
-    //             (error)=>{
-    //                 console.log(error)
-    //             }
-    //         )
+        })
+        console.log(lines);
+        axios({
+                method: 'post',           
+                url: 'api/purchase',
+                headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
+                data:{
+                    "sessionKey": sessionStorage.getItem("sessionKey"),
+                    "lines": lines,                   
+                }
+            }             
+            )
+            .then(
+                (response)=>{
+                    console.log(response);
+                    let {puchaseID} = response.data.data
+                    let {message,status} = response.data
+                    if (status=="success"){
+                        //TODO find another method to store all puchaseID, now only the latest puchaseID will be stored.
+                        localStorage.setItem("puchaseID",puchaseID)
+                        alert(message)
+                        this.props.history.push('/')
+                    }
+                    else{
+                        console.log(message)
+                        alert(message)                       
+                    }
+                }
+            )
+            .catch(
+                (error)=>{
+                    console.log(error)
+                }
+            )
 
-    // }
+    }
 
     _handleChange(e){
         let id = e.target.id
@@ -84,24 +85,22 @@ class CurrentOrderPage extends React.Component{
         })
     }
 
-    // _handleEdit(e){
-    //     this.setState({
-    //         edit: true
-    //     })
-    // }
+    _handleEdit(e){
+        this.setState({
+            edit: true
+        })
+    }
 
-    // _handleSave(e){
-    //     this.setState({
-    //         edit: false
-    //     })
-    // }
+    _handleSave(e){
+        this.setState({
+            edit: false
+        })
+    }
 
     _handleScan(e){
         e.preventDefault();
         let scanCode = parseInt(this.state.barcode);
-        console.log(scanCode);
-        // TODO: fix bug caused by asynchronous calls, the following judgement will result in this bug. 
-        
+        console.log(scanCode);        
         const res = this.state.order.products.some(item => { return item.barcode == scanCode; });
         console.log(this.state.order.products);
         console.log(res);
@@ -161,8 +160,8 @@ class CurrentOrderPage extends React.Component{
     // product price retrieve request 
     remoteAdd(barcode){
         axios({
-                method: 'post',           
-                url: 'http://52.68.78.115:5000/api/price',
+                method: 'post',           
+                url: 'api/price',
                 headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
                 data:{
                     "sessionKey": sessionStorage.getItem("sessionKey"),
@@ -173,9 +172,10 @@ class CurrentOrderPage extends React.Component{
             .then(
                 (response)=>{
                     console.log(response);
-                    var {productname, price, productId, status,productCode} = response.data
-                    let setP =(barcode, productCode,productname,price,productId) =>{                       
-                        let newProduct = {id:productCode,name:productname,price:price,quantity: 1, barcode: barcode,keyProdcutID:productId}
+                    var {status} = response.data
+                    var {productname, price, keyProductCode,productCode,uri_large,uri_medium,uri_small} = response.data.data
+                    let setP =(barcode, productCode,productname,price,productId,l_img,m_img,s_img) =>{                       
+                        let newProduct = {id:productCode,name:productname,price:price,quantity: 1, barcode: barcode,keyProductCode:productId,uri_large:l_img,uri_medium:m_img,uri_small:s_img}
                         let newProductList = this.state.order.products.concat(newProduct)
                         this.setState({
                             order: {
@@ -184,13 +184,14 @@ class CurrentOrderPage extends React.Component{
                         })
                         
                     }
+
                     console.log(status);
-                    if (status===true){
+                    if (status=="success"){
                         if(this.state.order.products.some(item => { return item.barcode == barcode; })){
                             this.add(barcode)
                         }
                         else{
-                            setP(barcode,productCode,productname,price,productId)
+                            setP(barcode,productCode,productname,price,keyProductCode,uri_large,uri_medium,uri_small)
                         }
                     }
                     else{
@@ -207,7 +208,7 @@ class CurrentOrderPage extends React.Component{
 
     render() {
         if(sessionStorage.getItem('user')){
-           /* if(!this.state.edit && this.state.order.products!=null){
+            if(!this.state.edit && this.state.order.products!=null){
                 return (
                     <>
                         <h1>Current Order:</h1>
@@ -229,7 +230,7 @@ class CurrentOrderPage extends React.Component{
 
                 )
             }
-            console.log(this.state) */
+            console.log(this.state)
             
             return (
                 <>

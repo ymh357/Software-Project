@@ -10,7 +10,7 @@ class Product extends React.Component {
     render() {
         return (
             <li className={style.card}>
-                <span className={style.productImage}><img alt={"product image"} src='https://attachments.pjsas.com.au/products/images_large/4908.jpg'/></span>
+                <span className={style.productImage}><img alt={"product image"} src={this.props.product.uri_large} onError={(e) => {e.target.onerror = null;e.target.src="https://pjsas.securetotecs.com/sites/pjsas/attachments/products/images_small/anotfound.png?1589769784203"}} /></span>
                 <span className={style.productBasicContainer}>
                     <span className={style.productBasic}>Product ID: {this.props.product.id} </span>
                     <span className={style.productBasic}>Product Name: {this.props.product.name}</span>
