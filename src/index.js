@@ -8,7 +8,7 @@ import HistoryOrdersPage from './pages/historyOrdersPage';
 import CurrentOrderPage from './pages/currentOrderPage';
 import NavigationBar from "./components/navigation_bar";
 
-class App extends React.Component {
+export default class App extends React.Component {
     constructor(props) {
         super(props);
         if(!localStorage.getItem('orders')){

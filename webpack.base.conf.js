@@ -36,7 +36,7 @@ module.exports = {
         historyApiFallback: true,
         proxy: {
         '/api/*':{
-            target: 'http://localhost:5000',
+            target: 'http://ec2-52-68-78-115.ap-northeast-1.compute.amazonaws.com:5000',
             changeOrigin: true,
             secure: false
         }

@@ -13,7 +13,7 @@ class HomePage extends React.Component{
             //TODO: use another way to load the img to avoid repeated downloads
             return (
                 <>
-                    <h1>Home</h1>
+                    <h1 data-testid= "homePage">Home</h1>
                     <div className={homeStyle.menu}>
                         <div className={homeStyle.item}>
                             <div className={homeStyle.imgBlock}>
