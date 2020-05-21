@@ -45,10 +45,12 @@ class LoginForm extends React.Component{
                 (response)=>{
                     console.log(response);
                     let {status, message} = response.data;
-                    console.log(status);
+                    let {session_id} = response.data.data;
+                    console.log(message);
+                    alert(message);
                     if(status=="success"){
                         sessionStorage.setItem('user', this.state.username);
-                        sessionStorage.setItem('sessionKey',message);
+                        sessionStorage.setItem('sessionKey', session_id);
                         this.setState({
                             error:false,
                             isLogout:false
