@@ -48,7 +48,7 @@ const Header = styled.h1`
     line-height: normal;
     display: block;
     font-size: 2em;
-    margin-block-start: 0.67em;
+    margin-block-start: 0em;
     margin-block-end: 0.67em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
@@ -57,6 +57,6 @@ const Header = styled.h1`
 `
 
 const Logo = styled.img`
-    max-width: 50%;
+    max-width: 40%;
     max-height: 50%;
 `
