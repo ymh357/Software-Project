@@ -1,37 +1,39 @@
 import React from "react"
 import {Link, withRouter} from 'react-router-dom'
 import { Title } from "../components/Title"
-import homeStyle from '../css/home.module.css'
+
+// import styled from '../css/slider.css'
+import Slider from '../components/Slider'
 import Logout from '../components/Logout'
+import NavigationBar from "../components/navigation_bar";
 
-
+const slideData = [
+    {
+      index: 0,
+      headline: 'Current Orders',
+      button: 'Shop now',
+      src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/fashion.jpg',
+        link: '/order' },
+    
+    {
+      index: 1,
+      headline: 'History Orders',
+      button: 'Browse My History',
+      src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/forest.jpg' ,
+      link: '/viewHistoryOrder'},
+    
+    ];
 class HomePage extends React.Component{
 
     render() {
-        console.log(homeStyle)
+      
         if(sessionStorage.getItem('user')){
             //TODO: use another way to load the img to avoid repeated downloads
             return (
                 <>
-                    <h1 data-testid= "homePage">Home</h1>
-                    <div className={homeStyle.menu}>
-                        <div className={homeStyle.item}>
-                            <div className={homeStyle.imgBlock}>
-                            <img className={homeStyle.postImg}  src='https://image.flaticon.com/icons/svg/711/711897.svg' alt={'Current Order'}/>
-                            </div>
-                            <div className={homeStyle.urlBlock}> 
-                            <Link to={'/order'}>Current Order</Link>
-                            </div>
-                        </div>
-                        <div className={homeStyle.item}>
-                            <div className={homeStyle.imgBlock}>
-                            <img className={homeStyle.postImg}  src='https://image.flaticon.com/icons/svg/2521/2521625.svg' alt={'history order'}/>
-                            </div>
-                            <div className={homeStyle.urlBlock}> 
-                            <Link to={'/viewHistoryOrder'}>History Order</Link>
-                            </div>
-                        </div>
-                    </div>
+                <NavigationBar/>
+                <Slider  heading = "Example Slider" slides={slideData} history={this.props.history}/>
+       
                 </>
             )
         }

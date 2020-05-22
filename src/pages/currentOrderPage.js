@@ -3,6 +3,8 @@ import {withRouter} from 'react-router-dom'
 import Product from "../components/product";
 import Summary from "../components/Summary";
 import axios from 'axios';
+import NavigationBar from "../components/navigation_bar";
+
 
 class CurrentOrderPage extends React.Component{
 
@@ -208,13 +210,16 @@ class CurrentOrderPage extends React.Component{
 
     render() {
         if(sessionStorage.getItem('user')){
-            if(!this.state.edit && this.state.order.products!=null){
+
+            //Modified by Dongsheng, avoid null value error
+            if(!this.state.edit && this.state.order && this.state.order.products!=null){
                 return (
                     <>
-                        <h1>Current Order:</h1>
+                        <NavigationBar/>
+                        <h1 data-testid='currentOrder'>Current Order:</h1>
                         <ul>
                             {
-                                this.state.order.products.map(e=>{
+                                 this.state.order.products.map(e=>{
                                     if(e.quantity>0)
                                         return <Product product={e} key={e.barcode}/>
                                     return null
@@ -234,10 +239,11 @@ class CurrentOrderPage extends React.Component{
             
             return (
                 <>
+                    <NavigationBar/>
                     <h1>Current Order editing:</h1>
                     <ul>
                         {   
-                            this.state.order.products.map(e=>
+                            this.state.order && this.state.order.products.map(e=>
                                 <Product product={e} key={e.barcode} edit toReduce={this.reduce} toAdd={this.add}></Product>
                             )
                         }

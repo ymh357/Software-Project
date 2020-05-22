@@ -4,16 +4,19 @@ import OrderItem from '../components/orderItem'
 import Order from '../components/order'
 import Summary from "../components/Summary";
 import style from '../css/history.module.css'
-
+import NavigationBar from "../components/navigation_bar";
 
 class HistoryOrdersPage extends React.Component{
 
     constructor(props) {
         super(props);
 
+        //Modified by Dongsheng, clean local test data, avoid null value error
+        const storedOrders = JSON.parse(localStorage.getItem('orders'))
         this.state = {
-            orders: JSON.parse(localStorage.getItem('orders')),
+            orders: storedOrders ? storedOrders:[],
         }
+       
     }
 
     render() {
@@ -30,7 +33,8 @@ class HistoryOrdersPage extends React.Component{
 
             return (
                 <>
-                    <h1>History Orders:</h1>
+                    <NavigationBar/>
+                    <h1 data-testid='historyOrders'>History Orders:</h1>
                     <table className={style.orderTable}>
                         <thead>
                             <tr>
