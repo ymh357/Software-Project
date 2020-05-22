@@ -86,7 +86,7 @@ class LoginForm extends React.Component{
         }  
         const {error, errorMassage} = this.state
         return (
-            <>
+            <div style={{width:'30%'}}>
                 {error && <ErrorMessage massage={errorMassage}/>} 
                
                 <StyledForm onSubmit={this._handleSubmit} className={this.props.className}>
@@ -113,7 +113,7 @@ class LoginForm extends React.Component{
                     </Fields>
                    
                 </StyledForm>
-            </>
+            </div>
 
         )
 
@@ -129,8 +129,8 @@ text-align: left;
 font-size: 16px;
 `
 const Fields = styled.div`
-height: 208px;
-    position: absolute;
+height: fit-content;
+    position: relative;
     left: 0;
     width:100%
 `
@@ -174,16 +174,16 @@ transition-property: transform,opacity,box-shadow,top,left,-webkit-transform;
 -webkit-transform: rotateX(0deg);
         transform: rotateX(0deg);
 position: relative;
-width: 25%;
+width: fit-content;
 border-top: 2px solid #D8312A;
-height: 50%;
+height: fit-content;
 position: absolute;
 left: 0;
 right: 0;
 margin: auto;
 top: 0;
 bottom: 0;
-padding: 100px 40px 40px 40px;
+padding: 100px 0px 8% 0px;
 background: #35394a;
 /* Old browsers */
 /* FF3.6+ */
@@ -192,9 +192,14 @@ background: #35394a;
 /* Opera 11.10+ */
 /* IE10+ */
 background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+
 /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a', endColorstr='#1f222e',GradientType=1 );
 /* IE6-9 fallback on horizontal gradient */
+@media screen and (min-width: 1200px){
+    width:25%;
+    padding-bottom: 8%
+}
 `
 
 const SubmitField = styled.div`
