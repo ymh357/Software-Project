@@ -25,20 +25,16 @@ class CurrentOrderPage extends React.Component{
     }
 
     _handleSubmit(e){
-        let orders = JSON.parse(localStorage.getItem('orders'))
-        let id = orders[orders.length-1].id
-        orders.push({id:id+1,...this.state.order})
-        localStorage.setItem('orders', JSON.stringify(orders))
         let lines =[]
         this.state.order.products.map(item => {
             let line = {
                 lineType:"PRODUCT",
                 productId:item.keyProductCode,
-                productCode:item.id,
+                productCode:item.productCode,
                 quantity:item.quantity,
                 priceExTax:item.price,
                 priceTotalExTax:item.price*item.quantity,
-                productName:item.name,
+                productName:item.productName,
             }
             lines.push(line)
         
@@ -176,7 +172,7 @@ class CurrentOrderPage extends React.Component{
                     var {status} = response.data
                     var {productname, price, keyProductCode,productCode,uri_large,uri_medium,uri_small} = response.data.data
                     let setP =(barcode, productCode,productname,price,productId,l_img,m_img,s_img) =>{                       
-                        let newProduct = {id:productCode,name:productname,price:price,quantity: 1, barcode: barcode,keyProductCode:productId,uri_large:l_img,uri_medium:m_img,uri_small:s_img}
+                        let newProduct = {productCode:productCode,productName:productname,price:price,quantity: 1, barcode: barcode,keyProductCode:productId,uri_large:l_img,uri_medium:m_img,uri_small:s_img}
                         let newProductList = this.state.order.products.concat(newProduct)
                         this.setState({
                             order: {

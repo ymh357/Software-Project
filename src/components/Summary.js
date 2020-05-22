@@ -10,9 +10,9 @@ class Summary extends React.Component {
         console.log(this.props);
         if(this.props.products!=[])
         {this.props.products.map(item =>{
-            totalP += item.price*item.quantity
+            totalP += (item.price||item.priceExTax)*item.quantity
         })}
-        return totalP
+        return totalP.toFixed(2)
     }
     render() {
         return (

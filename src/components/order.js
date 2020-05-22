@@ -11,19 +11,19 @@ class Order extends React.Component{
 
     _handleClick(e){
         e.preventDefault()
-        const path =  `order${this.props.order.id}`
+        const path =  `order${this.props.order.keyPurchaseOrderID}`
         this.props.history.push(path)
     }
 
     render() {
         return (
             <li className={style.order}>
-                <h1>{this.props.edit && <button onClick={this._handleClick}>Order ID: {this.props.order.id}</button>}{!this.props.edit && `Order ID: ${this.props.order.id}`}</h1>
+                <h1>{this.props.edit && <button onClick={this._handleClick}>Order ID: {this.props.order.keyPurchaseOrderID}</button>}{!this.props.edit && `Order ID: ${this.props.order.keyPurchaseOrderID}`}</h1>
                 <h2>Products :</h2>
                 <ul className={style.cardContainer}>
                     {
                         this.props.order.products.map(product =>
-                            <Product product = {product} key={product.id}/>
+                            <Product product = {product} key={product.productCode}/>
                         )
                     }
                 </ul>
