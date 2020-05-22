@@ -51,7 +51,6 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-<<<<<<< HEAD
                 <header>
                     <NavigationBar/>
                 </header>
@@ -61,14 +60,6 @@ class App extends React.Component {
                     <Route path="/viewHistoryOrder" component={HistoryOrdersPage}/>
                     <Route path="/order_detail_:orderId" component={HistoryOrdersPage}/>
                     <Route path="/order" exact component={CurrentOrderPage}/>
-=======
-                <div className="App">
-                    <Route path="/" exact component={HomePage}></Route>
-                    <Route path="/login"  component={LoginPage}></Route>
-                    <Route path="/viewHistoryOrder"  component={HistoryOrdersPage}></Route>
-                    <Route path="/order" component={CurrentOrderPage}></Route>
-                    <Route path="/cart" component={Cart}></Route>
->>>>>>> restructuring project
                 </div>
             </Router>
         )
