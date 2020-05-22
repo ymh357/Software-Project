@@ -3,7 +3,8 @@ import {withRouter} from 'react-router-dom'
 import OrderItem from '../components/orderItem'
 import Order from '../components/order'
 import Summary from "../components/Summary";
-import style from '../css/history.module.css'
+import style from '../css/history.module.css';
+import NavigationBar from '../components/navigation_bar';
 import axios from 'axios';
 
 
@@ -154,11 +155,20 @@ class HistoryOrdersPage extends React.Component{
             )
             if(Object.entries(this.props.match.params).length !== 0){
                 let order = this.state.orders.find( e => +e.keyPurchaseOrderID === +this.props.match.params.orderId)
-                return <ul className={style.orderContainer}><Order order={order}/><Summary products={order.products}/></ul>
+                return (
+                    <>
+                    <header>
+                    <NavigationBar/>
+                    </header>
+                    <ul className={style.orderContainer}><Order order={order}/><Summary products={order.products}/></ul>
+                </>)
             }
 
             return (
                 <>
+                    <header>
+                        <NavigationBar/>
+                    </header>
                     <h1>History Orders:</h1>
                     <table className={style.orderTable}>
                         <thead>

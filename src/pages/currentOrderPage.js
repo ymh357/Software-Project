@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom'
 import Product from "../components/product";
 import Summary from "../components/Summary";
 import axios from 'axios';
+import NavigationBar from '../components/navigation_bar';
 
 class CurrentOrderPage extends React.Component{
 
@@ -207,6 +208,9 @@ class CurrentOrderPage extends React.Component{
             if(!this.state.edit && this.state.order.products!=null){
                 return (
                     <>
+                        <header>
+                            <NavigationBar/>
+                        </header>
                         <h1>Current Order:</h1>
                         <ul>
                             {
@@ -230,6 +234,9 @@ class CurrentOrderPage extends React.Component{
             
             return (
                 <>
+                    <header>
+                        <NavigationBar/>
+                    </header>
                     <h1>Current Order editing:</h1>
                     <ul>
                         {   

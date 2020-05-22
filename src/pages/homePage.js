@@ -3,6 +3,7 @@ import {Link, withRouter} from 'react-router-dom'
 import { Title } from "../components/Title"
 import homeStyle from '../css/home.module.css'
 import Logout from '../components/Logout'
+import NavigationBar from '../components/navigation_bar'
 
 
 class HomePage extends React.Component{
@@ -13,6 +14,9 @@ class HomePage extends React.Component{
             //TODO: use another way to load the img to avoid repeated downloads
             return (
                 <>
+                    <header>
+                        <NavigationBar/>
+                    </header>
                     <h1 data-testid= "homePage">Home</h1>
                     <div className={homeStyle.menu}>
                         <div className={homeStyle.item}>
