@@ -3,7 +3,8 @@ import {withRouter} from 'react-router-dom'
 import OrderItem from '../components/orderItem'
 import Order from '../components/order'
 import Summary from "../components/Summary";
-import style from '../css/history.module.css'
+import style from '../css/history.module.css';
+import NavigationBar from '../components/navigation_bar';
 
 
 class HistoryOrdersPage extends React.Component{
@@ -30,6 +31,9 @@ class HistoryOrdersPage extends React.Component{
 
             return (
                 <>
+                    <header>
+                        <NavigationBar/>
+                    </header>
                     <h1>History Orders:</h1>
                     <table className={style.orderTable}>
                         <thead>

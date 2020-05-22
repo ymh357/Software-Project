@@ -6,7 +6,6 @@ import LoginPage from './pages/loginPage';
 import HomePage from './pages/homePage';
 import HistoryOrdersPage from './pages/historyOrdersPage';
 import CurrentOrderPage from './pages/currentOrderPage';
-import NavigationBar from "./components/navigation_bar";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -51,9 +50,7 @@ export default class App extends React.Component {
     render() {
         return (
             <Router>
-                <header>
-                    <NavigationBar/>
-                </header>
+                
                 <div className="App" style={{height: '100%', width:'100%'}}>
                     <Route path="/" exact component={HomePage}/>
                     <Route path="/login" exact component={LoginPage}/>
