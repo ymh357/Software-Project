@@ -5,7 +5,7 @@ class OrderItem extends React.Component{
 
     render(){
         const price = this.props.order.products.reduce((acc, cur) => {
-            return acc + cur.price
+            return acc + cur.price * cur.quantity
         },0)
         return (
             <tr>
