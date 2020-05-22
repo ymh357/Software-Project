@@ -5,11 +5,23 @@ class Product extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {value: ''};
+
+        this.handleChange = this.handleChange.bind(this);
     }
+
+    handleChange(e) {
+        // this.setState({value: event.target.value});
+        let quantity = e.target.quantity
+        this.setState({
+            [quantity]: e.target.value
+        })
+      }
 
     render() {
         return (
-            <li className={style.card}>
+            <li >
                 <span className={style.productImage}><img alt={"product image"} src={this.props.product.uri_large} onError={(e) => {e.target.onerror = null;e.target.src="https://pjsas.securetotecs.com/sites/pjsas/attachments/products/images_small/anotfound.png?1589769784203"}} /></span>
                 <span className={style.productBasicContainer}>
                     <span className={style.productBasic}>Product ID: {this.props.product.productCode} </span>
@@ -24,7 +36,8 @@ class Product extends React.Component {
                         {this.props.edit && <span><button onClick={(e)=>{this.props.toReduce(
                             this.props.product.barcode
                         )}}>-</button></span>}
-                        <button disabled>Quantity: {this.props.product.quantity}</button>
+                        <input type="text" value={this.props.product.quantity} onChange={this.handleChange} />
+                        {/* <input>Quantity: {this.props.product.quantity}</input> */}
                         {this.props.edit && <span><button onClick={(e)=>{this.props.toAdd(
                             this.props.product.barcode
                         )}}>+</button></span> }
@@ -32,7 +45,7 @@ class Product extends React.Component {
 
                 </span>
 
-
+                 <hr/>           
 
             </li>
         )
