@@ -6,18 +6,26 @@
     border-collapse: collapse;
     margin: 0  auto;
     text-align: center;
+    table-layout: fixed;
+    width: 90%;
 }
 
 .orderTable th,td{
     border: 1px solid #cad9ea;
     color: #666;
     height: 30px;
+    width: 20%;
+}
+
+@media only screen and (max-width: 800px) {
+    .orderTable  th,td{
+        overflow: scroll;
+    }
 }
 
 .orderTable thead th
 {
     background-color: #CCE8EB;
-    width: 100px;
 }
 .orderTable tr:nth-child(odd)
 {
