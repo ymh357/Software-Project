@@ -1,14 +1,11 @@
 import React from "react"
-import {Link, withRouter, useHistory} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import { Title } from "../components/Title"
 import homeStyle from '../css/home.module.css'
 import Logout from '../components/Logout'
 
-const history = useHistory();
 
 class HomePage extends React.Component{
-
-    
 
     render() {
         console.log(homeStyle)
@@ -16,7 +13,7 @@ class HomePage extends React.Component{
             //TODO: use another way to load the img to avoid repeated downloads
             return (
                 <>
-                    <h1>Home</h1>
+                    <h1 data-testid= "homePage">Home</h1>
                     <div className={homeStyle.menu}>
                         <div className={homeStyle.item}>
                             <div className={homeStyle.imgBlock}>

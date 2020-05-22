@@ -32,7 +32,7 @@ class CurrentOrderPage extends React.Component{
         this.state.order.products.map(item => {
             let line = {
                 lineType:"PRODUCT",
-                productId:item.keyProdcutID,
+                productId:item.keyProductCode,
                 productCode:item.id,
                 quantity:item.quantity,
                 priceExTax:item.price,
@@ -44,8 +44,8 @@ class CurrentOrderPage extends React.Component{
         })
         console.log(lines);
         axios({
-                method: 'post',           
-                url: 'api/purchase',
+                method: 'post',           
+                url: 'api/purchase',
                 headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
                 data:{
                     "sessionKey": sessionStorage.getItem("sessionKey"),
@@ -56,16 +56,17 @@ class CurrentOrderPage extends React.Component{
             .then(
                 (response)=>{
                     console.log(response);
-                    let {result, puchaseID, resultCode} = response.data;
-                    if (result=="SUCCESS"){
+                    let {puchaseID} = response.data.data
+                    let {message,status} = response.data
+                    if (status=="success"){
                         //TODO find another method to store all puchaseID, now only the latest puchaseID will be stored.
                         localStorage.setItem("puchaseID",puchaseID)
-                        alert(result)
+                        alert(message)
                         this.props.history.push('/')
                     }
                     else{
-                        console.log(resultCode)
-                        alert(resultCode)                       
+                        console.log(message)
+                        alert(message)                       
                     }
                 }
             )
@@ -84,43 +85,22 @@ class CurrentOrderPage extends React.Component{
         })
     }
 
-    _handleChange(e){
-        let id = e.target.id
+    _handleEdit(e){
         this.setState({
-            [id]: e.target.value
+            edit: true
         })
     }
 
- 
-
-    _handleScan(e){
-        e.preventDefault();
-        let scanCode = parseInt(this.state.barcode);
-        console.log(scanCode);
-        // TODO: fix bug caused by asynchronous calls, the following judgement will result in this bug. 
-        
-        const res = this.state.order.products.some(item => { return item.barcode == scanCode; });
-        console.log(this.state.order.products);
-        console.log(res);
-
-        if (res){
-            this.add(scanCode);
-        }
-        else{            
-            this.remoteAdd(scanCode);
-        }
+    _handleSave(e){
         this.setState({
-            barcode:''
+            edit: false
         })
-        this.myInput.focus()
     }
 
     _handleScan(e){
         e.preventDefault();
         let scanCode = parseInt(this.state.barcode);
-        console.log(scanCode);
-        // TODO: fix bug caused by asynchronous calls, the following judgement will result in this bug. 
-        
+        console.log(scanCode);        
         const res = this.state.order.products.some(item => { return item.barcode == scanCode; });
         console.log(this.state.order.products);
         console.log(res);
@@ -180,8 +160,8 @@ class CurrentOrderPage extends React.Component{
     // product price retrieve request 
     remoteAdd(barcode){
         axios({
-                method: 'post',           
-                url: 'api/price',
+                method: 'post',           
+                url: 'api/price',
                 headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
                 data:{
                     "sessionKey": sessionStorage.getItem("sessionKey"),
@@ -192,9 +172,10 @@ class CurrentOrderPage extends React.Component{
             .then(
                 (response)=>{
                     console.log(response);
-                    var {productname, price, productId, status,productCode} = response.data
-                    let setP =(barcode, productCode,productname,price,productId) =>{                       
-                        let newProduct = {id:productCode,name:productname,price:price,quantity: 1, barcode: barcode,keyProdcutID:productId}
+                    var {status} = response.data
+                    var {productname, price, keyProductCode,productCode,uri_large,uri_medium,uri_small} = response.data.data
+                    let setP =(barcode, productCode,productname,price,productId,l_img,m_img,s_img) =>{                       
+                        let newProduct = {id:productCode,name:productname,price:price,quantity: 1, barcode: barcode,keyProductCode:productId,uri_large:l_img,uri_medium:m_img,uri_small:s_img}
                         let newProductList = this.state.order.products.concat(newProduct)
                         this.setState({
                             order: {
@@ -203,13 +184,14 @@ class CurrentOrderPage extends React.Component{
                         })
                         
                     }
+
                     console.log(status);
-                    if (status===true){
+                    if (status=="success"){
                         if(this.state.order.products.some(item => { return item.barcode == barcode; })){
                             this.add(barcode)
                         }
                         else{
-                            setP(barcode,productCode,productname,price,productId)
+                            setP(barcode,productCode,productname,price,keyProductCode,uri_large,uri_medium,uri_small)
                         }
                     }
                     else{
@@ -226,7 +208,7 @@ class CurrentOrderPage extends React.Component{
 
     render() {
         if(sessionStorage.getItem('user')){
-           if(!this.state.edit && this.state.order.products!=null){
+            if(!this.state.edit && this.state.order.products!=null){
                 return (
                     <>
                         <h1>Current Order:</h1>

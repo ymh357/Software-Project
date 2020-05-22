@@ -32,11 +32,11 @@ module.exports = {
         ]
     },
     devServer: {
-        host: '127.0.0.1',
+        host: '0.0.0.0',
         historyApiFallback: true,
         proxy: {
         '/api/*':{
-            target: 'htt://52.68.78.115:5000',
+            target: 'http://ec2-52-68-78-115.ap-northeast-1.compute.amazonaws.com:5000',
             changeOrigin: true,
             secure: false
         }
