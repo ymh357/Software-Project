@@ -7,7 +7,6 @@ import HomePage from './pages/homePage';
 import HistoryOrdersPage from './pages/historyOrdersPage';
 import CurrentOrderPage from './pages/currentOrderPage';
 
-
 export default class App extends React.Component {
     constructor(props) {
         super(props);
@@ -17,7 +16,6 @@ export default class App extends React.Component {
     render() {
         return (
             <Router>
-                
                 
                 <div className="App" style={{height: '100%', width:'100%'}}>
                     <Route path="/" exact component={HomePage}/>
