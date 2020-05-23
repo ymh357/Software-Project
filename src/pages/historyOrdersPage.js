@@ -13,6 +13,8 @@ class HistoryOrdersPage extends React.Component{
     constructor(props) {
         super(props);
 
+        //Modified by Dongsheng, clean local test data, avoid null value error
+        const storedOrders = JSON.parse(localStorage.getItem('orders'))
         this.state = {
             orders: [],
             isHistoryLoading: false,
@@ -166,10 +168,8 @@ class HistoryOrdersPage extends React.Component{
 
             return (
                 <>
-                    <header>
-                        <NavigationBar/>
-                    </header>
-                    <h1>History Orders:</h1>
+                    <NavigationBar/>
+                    <h1 data-testid='historyOrders'>History Orders:</h1>
                     <table className={style.orderTable}>
                         <thead>
                             <tr>

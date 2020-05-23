@@ -10,25 +10,30 @@ module.exports = {
         publicPath: '/'
     },
     module: {
-        rules: [
-            {
-                test:/\.css$/,
-                use: [
-                    {loader: "style-loader"},
-                    {
-                        loader: "css-loader",
-                        options: {
-                            modules: true
-                        },
 
-                    }
-                ]
-            },
+        
+        rules: [
+
             {
                 test: /\.(js|jsx)$/,
                 use: 'babel-loader',
                 exclude: /node_modules/
-            }
+            },
+            {
+                test: /^(?!.*?\.module).*\.css$/,
+                use: ['style-loader', 'css-loader']
+              },
+              {
+                test: /\.module\.css$/,
+                use: ['style-loader', {
+                  loader: 'css-loader',
+                  options: {
+                    modules: true
+                  }
+                }]
+              }
+
+
         ]
     },
     devServer: {

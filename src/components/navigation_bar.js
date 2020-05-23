@@ -1,5 +1,5 @@
 import React from 'react';
-import style from '../css/navigation_bar.css'
+import style from '../css/navigation_bar.module.css'
 import {withRouter} from 'react-router-dom'
 import Logout from '../components/Logout'
 
@@ -21,13 +21,29 @@ class NavigationBar extends React.PureComponent{
         return(
             <>
                 <div className={style.topnav} id="myTopnav">
-                    <a href="/" className={this.props.location.pathname === '/'? style.active : ''}>Home</a>
-                    <a href="/viewHistoryOrder" className={this.props.location.pathname === '/viewHistoryOrder'? style.active : ''}>History</a>
-                    <a href="/order" className={/^\/order/.test(this.props.location.pathname)? style.active : ''}>Order</a>
-                    <Logout className={style.logoutBtn }>logout</Logout>
-                    <a href="#" className={style.icon} onClick={this.toggle}>
+
+                    <ul>
+                        <li>
+                            <a href="/" className={this.props.location.pathname === '/'? style.active : ''}>Home</a>
+                        </li>
+                        <li>
+                            <a href="/viewHistoryOrder" className={this.props.location.pathname === '/viewHistoryOrder'? style.active : ''}>History</a>
+                        </li>
+                        <li>
+                            <a href="/order" className={/^\/order/.test(this.props.location.pathname)? style.active : ''}>Order</a>
+                        </li>
+                        <li>
+                            <Logout className={style.logoutBtn }>logout</Logout>
+                        </li>
+                        <li>
+                        <a href="#" className={style.icon} onClick={this.toggle}>
                         pop
                     </a>
+                        </li>
+
+
+                    </ul>
+
                 </div>
             </>
 

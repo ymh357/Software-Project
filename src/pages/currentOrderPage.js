@@ -205,16 +205,16 @@ class CurrentOrderPage extends React.Component{
 
     render() {
         if(sessionStorage.getItem('user')){
-            if(!this.state.edit && this.state.order.products!=null){
+
+            //Modified by Dongsheng, avoid null value error
+            if(!this.state.edit && this.state.order && this.state.order.products!=null){
                 return (
                     <>
-                        <header>
-                            <NavigationBar/>
-                        </header>
-                        <h1>Current Order:</h1>
+                        <NavigationBar/>
+                        <h1 data-testid='currentOrder'>Current Order:</h1>
                         <ul>
                             {
-                                this.state.order.products.map(e=>{
+                                 this.state.order.products.map(e=>{
                                     if(e.quantity>0)
                                         return <Product product={e} key={e.barcode}/>
                                     return null
@@ -234,13 +234,11 @@ class CurrentOrderPage extends React.Component{
             
             return (
                 <>
-                    <header>
-                        <NavigationBar/>
-                    </header>
+                    <NavigationBar/>
                     <h1>Current Order editing:</h1>
                     <ul>
                         {   
-                            this.state.order.products.map(e=>
+                            this.state.order && this.state.order.products.map(e=>
                                 <Product product={e} key={e.barcode} edit toReduce={this.reduce} toAdd={this.add}></Product>
                             )
                         }

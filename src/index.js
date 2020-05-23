@@ -10,16 +10,7 @@ import CurrentOrderPage from './pages/currentOrderPage';
 export default class App extends React.Component {
     constructor(props) {
         super(props);
-        if(!localStorage.getItem('orders')){
-            let orders = []
-            localStorage.setItem('orders', JSON.stringify(orders))
-        }
-        if(!localStorage.getItem('current_order')){
 
-            localStorage.setItem('current_order', JSON.stringify({
-                products:[]
-            }))
-        }
     }
 
     render() {

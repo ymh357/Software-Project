@@ -52,7 +52,7 @@ describe('loginPage', () =>{
 
     //rerender with homepage when login success
     await waitFor(() => {
-      expect(screen.getByTestId('homePage')).toBeInTheDocument()
+      expect(screen.getByText('History Orders')).toBeInTheDocument()
     })
         
   })

@@ -17,7 +17,6 @@ class ErrorMessage extends Component {
         return (
             <Styleddiv>
                 <StyledErrorAlt size='15' />
-                <Title >The following error(s) occurred:</Title>
                 <ul>
                      <Message>{this.props.massage}</Message>
                 </ul>    
@@ -30,31 +29,43 @@ export default ErrorMessage
 
 
 const Styleddiv = styled.div`
-    &{
-        padding-right: 47.5px;
-        background: #ffebe6;
-        border-color: #ffebe6;
-        color: #172b4d;
-        border: 0 solid #0052cc;
-        border-radius: 3px;
-        color: #172b4d;
-        margin: 20px 0 0;
-        overflow-wrap: break-word;
-        padding: 5px 15px 5px 40px;
-        position: relative;
-        word-wrap: break-word;
-        word-break: normal;
-    }
+    
+        -moz-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        -webkit-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+        border-radius: 15px;
+        pointer-events: none;
+        position: fixed;
+        width: 50%;
+        padding: 10px;
+        background: white;
+        box-shadow: 0 0 25px black;
+        top: 50%;
+        left: 50%;
+        margin: -25% 0 0 -25%;
+        opacity: 0.5;
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+        pointer-events: auto;
+        opacity: 1;
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        width: 50%
+
+    
 
 `;
 
-const Title = styled.p`
-    font-weight: 700;
-`;
+
 
 const Message = styled.li`
-    display: list-item;
-    text-align: -webkit-match-parent;
+    // display: list-item;
+    // text-align: -webkit-match-parent;
 `;
 const StyledErrorAlt = styled(ErrorAlt)`
     color: red; 

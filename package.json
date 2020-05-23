@@ -30,7 +30,7 @@
     "jest-mock-axios": "^4.0.0",
     "node-fetch": "^2.6.0",
     "react-bulma-components": "^3.2.0",
-    "style-loader": "^1.1.4",
+    "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
