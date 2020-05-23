@@ -79,7 +79,7 @@ class HistoryOrdersPage extends React.Component{
                 }
                 else{
                     console.log(message)
-                    alert(message)                       
+                    //alert(message)                       
                 }
             }
         )
