@@ -4,6 +4,7 @@ import Product from "../components/product";
 import Summary from "../components/Summary";
 import axios from 'axios';
 import NavigationBar from '../components/navigation_bar';
+import ErrorMessage from '../components/errorMessage'
 
 class CurrentOrderPage extends React.Component{
 
@@ -13,6 +14,8 @@ class CurrentOrderPage extends React.Component{
         this.state = {
             order,
             edit: false,
+            error: false,
+            errorMassage:'',
             barcode:'',
         }
         this._handleEdit = this._handleEdit.bind(this)
@@ -58,12 +61,16 @@ class CurrentOrderPage extends React.Component{
                     if (status=="success"){
                         //TODO find another method to store all puchaseID, now only the latest puchaseID will be stored.
                         localStorage.setItem("puchaseID",puchaseID)
-                        alert(message)
+                        alert("Submit Successfully!")
                         this.props.history.push('/')
                     }
                     else{
                         console.log(message)
-                        alert(message)                       
+                        this.setState({
+                            error:true,
+                            errorMassage: message
+                        })
+                        //alert(message)                       
                     }
                 }
             )
@@ -156,6 +163,7 @@ class CurrentOrderPage extends React.Component{
     }
     // product price retrieve request 
     remoteAdd(barcode){
+
         axios({
                 method: 'post',           
                 url: 'api/price',
@@ -175,6 +183,7 @@ class CurrentOrderPage extends React.Component{
                         let newProduct = {productCode:productCode,productName:productname,price:price,quantity: 1, barcode: barcode,keyProductCode:productId,uri_large:l_img,uri_medium:m_img,uri_small:s_img}
                         let newProductList = this.state.order.products.concat(newProduct)
                         this.setState({
+                            error:false,
                             order: {
                                 products: newProductList
                             }
@@ -192,7 +201,11 @@ class CurrentOrderPage extends React.Component{
                         }
                     }
                     else{
-                        alert("invalid barcode")
+                        //alert("invalid barcode")
+                        this.setState({
+                            error:true,
+                            errorMassage: "invalid barcode"
+                        })
                     }
                 }
             )
@@ -205,13 +218,14 @@ class CurrentOrderPage extends React.Component{
 
     render() {
         if(sessionStorage.getItem('user')){
-
+            const {error, errorMassage} = this.state
             //Modified by Dongsheng, avoid null value error
             if(!this.state.edit && this.state.order && this.state.order.products!=null){
                 return (
                     <>
                         <NavigationBar/>
                         <h1 data-testid='currentOrder'>Current Order:</h1>
+                        {error && <ErrorMessage massage={errorMassage}/>}
                         <ul>
                             {
                                  this.state.order.products.map(e=>{
@@ -236,6 +250,7 @@ class CurrentOrderPage extends React.Component{
                 <>
                     <NavigationBar/>
                     <h1>Current Order editing:</h1>
+                    {error && <ErrorMessage massage={errorMassage}/>}
                     <ul>
                         {   
                             this.state.order && this.state.order.products.map(e=>
