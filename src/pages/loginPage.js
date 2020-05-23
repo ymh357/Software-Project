@@ -18,8 +18,9 @@ class LoginPage extends React.Component{
 
             <Page>
                     <div>
-                        
+                        {/*<Loginform>*/}
                         <LoginForm />
+                        {/*</Loginform>*/}
                     </div>
                     
             </Page>
@@ -38,12 +39,14 @@ const Page = styled.div`
     justify-content: center;
     min-height: 90vh;
     -webkit-justify-content: center;
-    background: linear-gradient(to right top, #8e44ad 0%, #3498db 100%);
-
+    background: #f1f1f3; // this is the color of the background of the login page
+    // background: white;
     height: 100%
 `
 
-
+// const Loginform = styled.LoginForm`
+//     background-color = lightgrey;
+// `
 
 const Logo = styled.img`
     max-width: 30%;

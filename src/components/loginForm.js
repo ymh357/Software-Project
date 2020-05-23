@@ -123,9 +123,10 @@ class LoginForm extends React.Component{
 export default LoginForm
 
 const Header = styled.div`
-color: #afb1be;
+color: black; // this is the color of the content at the top of the greeting box
+// color: #afb1be;
 height: 60px;
-text-align: left;
+text-align: center;
 font-size: 16px;
 `
 const Fields = styled.div`
@@ -141,20 +142,26 @@ width:100%
 `
 
 const Inputbox = styled.input`
-color: #afb1be;
+    color: black; // the color of input character
+// color: #afb1be;
     width: 100%;
     margin-top: -2px;
-    background: #32364a;
+    background: inherit; // this is the color of the two input box: username and password, be consistent with the login box
+    // background: #32364a;
     left: 0;
     padding: 10px 65px;
-    border-top: 2px solid #393d52;
-    border-bottom: 2px solid #393d52;
+    border-top: none;
+    border-bottom: none;
     border-right: none;
     border-left: none;
+    // border-top: 2px solid #393d52;
+    // border-bottom: 2px solid #393d52;
+    // border-right: none;
+    // border-left: none;
     outline: none;
-    font-family: 'Gudea', sans-serif;
+    font-family: 'Arial', sans-serif;
+    // font-family: 'Gudea', sans-serif;
     box-shadow: none;
-
 `
 
 
@@ -175,7 +182,8 @@ transition-property: transform,opacity,box-shadow,top,left,-webkit-transform;
         transform: rotateX(0deg);
 position: relative;
 width: fit-content;
-border-top: 2px solid #D8312A;
+border-top: none;
+// border-top: 2px solid #D8312A;
 height: fit-content;
 position: absolute;
 left: 0;
@@ -184,14 +192,15 @@ margin: auto;
 top: 0;
 bottom: 0;
 padding: 100px 0px 8% 0px;
-background: #35394a;
+// background: #35394a;
 /* Old browsers */
 /* FF3.6+ */
 /* Chrome,Safari4+ */
 /* Chrome10+,Safari5.1+ */
 /* Opera 11.10+ */
 /* IE10+ */
-background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+background: white; // this is the color of the login box except the input box
+// background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
 
 /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a', endColorstr='#1f222e',GradientType=1 );
@@ -209,14 +218,14 @@ left: 0;
 width: 80%;
 right: 0;
 margin: auto;
+font-color: black;
 `
 
 const StyledButton = styled.button`
-border-radius: 50px;
-    background: transparent;
+    border-radius: 50px;
+    background: #f1f1f3; // the color of the round button
     padding: 10px 50px;
-    border: 2px solid #DC6180;
-    color: #DC6180;
+    border: 2px solid transparency; // the color of the edge of the button  
     text-transform: uppercase;
     font-size: 11px;
     -webkit-transition-property: background,color;
@@ -225,7 +234,7 @@ border-radius: 50px;
     transition-duration: .2s;
     &:hover {
         color: white;
-        background: #DC6180;
+        background: black; // the color of the background of button when clicking
         cursor: pointer;
         -webkit-transition-property: background,color;
         transition-property: background,color;
