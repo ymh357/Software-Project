@@ -123,17 +123,18 @@ class LoginForm extends React.Component{
 export default LoginForm
 
 const Header = styled.div`
-color: black; // this is the color of the content at the top of the greeting box
+    color: black; // this is the color of the content at the top of the greeting box
 // color: #afb1be;
-height: 60px;
-text-align: center;
-font-size: 16px;
+    height: 60px;
+    text-align: center;
+    font-size: 16px;
 `
 const Fields = styled.div`
-height: fit-content;
+    height: fit-content;
     position: relative;
     left: 0;
-    width:100%
+    width:100%;
+    box-shadow:rgba(48, 37, 52, 0.2);
 `
 const StyledInput = styled.div`
 position: relative;
@@ -143,21 +144,17 @@ width:100%
 
 const Inputbox = styled.input`
     color: black; // the color of input character
-// color: #afb1be;
-    width: 100%;
-    margin-top: -2px;
+    width: 70%;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
     background: inherit; // this is the color of the two input box: username and password, be consistent with the login box
-    // background: #32364a;
-    left: 0;
+    left: 10px;
     padding: 10px 65px;
     border-top: none;
-    border-bottom: none;
+    border-bottom: 0.5px solid #393d52;
     border-right: none;
     border-left: none;
-    // border-top: 2px solid #393d52;
-    // border-bottom: 2px solid #393d52;
-    // border-right: none;
-    // border-left: none;
     outline: none;
     font-family: 'Arial', sans-serif;
     // font-family: 'Gudea', sans-serif;
@@ -166,32 +163,39 @@ const Inputbox = styled.input`
 
 
 const StyledForm = styled.form`
-
-opacity: 1;
-top: 20px;
--webkit-transition-timing-function: cubic-bezier(0.68, -0.25, 0.265, 0.85);
--webkit-transition-property: opacity,box-shadow,top,left,-webkit-transform;
-transition-property: opacity,box-shadow,top,left,-webkit-transform;
-transition-property: transform,opacity,box-shadow,top,left;
-transition-property: transform,opacity,box-shadow,top,left,-webkit-transform;
--webkit-transition-duration: .5s;
-        transition-duration: .5s;
--webkit-transform-origin: 161px 100%;
-        transform-origin: 161px 100%;
--webkit-transform: rotateX(0deg);
-        transform: rotateX(0deg);
-position: relative;
-width: fit-content;
-border-top: none;
-// border-top: 2px solid #D8312A;
-height: fit-content;
-position: absolute;
-left: 0;
-right: 0;
-margin: auto;
-top: 0;
-bottom: 0;
-padding: 100px 0px 8% 0px;
+    opacity: 1;
+    top: 20px;
+    // -webkit-transition-timing-function: cubic-bezier(0.68, -0.25, 0.265, 0.85);
+    // -webkit-transition-property: opacity,box-shadow,top,left,-webkit-transform;
+    // transition-property: opacity,box-shadow,top,left,-webkit-transform;
+    // transition-property: transform,opacity,box-shadow,top,left;
+    // transition-property: transform,opacity,box-shadow,top,left,-webkit-transform;
+    // -webkit-transition-duration: .5s;
+    //     transition-duration: .5s;
+    // -webkit-transform-origin: 161px 100%;
+    //     transform-origin: 161px 100%;
+    // -webkit-transform: rotateX(0deg);
+    //     transform: rotateX(0deg);
+    position: relative;
+    width: fit-content;
+    // border-top: none;
+    border-left-color:rgb(78, 81, 94);
+    border-bottom-color:rgb(78, 81, 94);
+    border-right-color:rgb(78, 81, 94);
+    color:rgb(78, 81, 94);
+    // border-top: 0.2px rgba(48, 37, 52, 0.2);
+    // border-bottom: 0.2px rgba(48, 37, 52, 0.2);
+    // border-left: 0.2px rgba(48, 37, 52, 0.2);
+    // border-right: 0.2px rgba(48, 37, 52, 0.2);
+    // box-shadow:rgba(48, 37, 52, 0.2);
+    height: fit-content;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    padding: 100px 0px 8% 0px;
 // background: #35394a;
 /* Old browsers */
 /* FF3.6+ */
@@ -199,7 +203,7 @@ padding: 100px 0px 8% 0px;
 /* Chrome10+,Safari5.1+ */
 /* Opera 11.10+ */
 /* IE10+ */
-background: white; // this is the color of the login box except the input box
+    background: white; // this is the color of the login box except the input box
 // background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
 
 /* W3C */
@@ -208,6 +212,60 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a', end
 @media screen and (min-width: 1200px){
     width:25%;
     padding-bottom: 8%
+    
+    border-bottom-color:rgb(78, 81, 94);
+initial.gigya-screen, .gigya-screen *
+border-bottom-left-radius:0px;
+border-bottom-right-radius:0px;
+border-bottom-style:none;
+border-bottom-width:0px;
+border-image-outset:0px;
+border-image-repeat:stretch;
+border-image-slice:100%;
+border-image-source:none;
+border-image-width:1;
+border-left-color:rgb(78, 81, 94);
+border-left-style:none;
+border-left-width:0px;
+border-right-color:rgb(78, 81, 94);
+border-right-style:none;
+border-right-width:0px;
+border-top-color:rgb(78, 81, 94);
+border-top-left-radius:0px;
+border-top-right-radius:0px;
+border-top-style:none;
+border-top-width:0px;
+box-sizing:content-box;
+clear:both;
+color:rgb(78, 81, 94);
+#4e515e.gigya-screen, .gigya-screen *
+#333body
+display:block;
+float:none;
+font-family:"Pandora Display", Arial, sans-serif;
+font-size:15px;
+height:511.5px;
+letter-spacing:0.3px;
+.3pxbody
+line-height:18px;
+margin-bottom:0px;
+margin-left:0px;
+margin-right:0px;
+margin-top:0px;
+max-width:100%;
+padding-bottom:0px;
+padding-left:0px;
+padding-right:0px;
+padding-top:0px;
+position:static;
+text-align:center;
+text-decoration-color:rgb(78, 81, 94);
+text-decoration-line:none;
+text-decoration-style:solid;
+text-size-adjust:100%;
+width:400px;
+zoom:1;
+-webkit-box-direction:normal;
 }
 `
 
@@ -232,6 +290,7 @@ const StyledButton = styled.button`
     transition-property: background,color;
     -webkit-transition-duration: .2s;
     transition-duration: .2s;
+    
     &:hover {
         color: white;
         background: black; // the color of the background of button when clicking
@@ -249,7 +308,7 @@ const StyledButton = styled.button`
 `
 
 const Icon = styled.img`
-position: absolute;
+    position: absolute;
     z-index: 1;
     left: 36px;
     top: 8px;

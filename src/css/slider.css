@@ -3,7 +3,7 @@
   --color-primary: #6B7A8F;
   --color-secondary: #101118;
   --color-accent: #1D1F2F;
-  --color-focus: #6D64F7;
+  --color-focus: #6B7A8F;
   --base-duration: 600ms;
   --base-ease: cubic-bezier(0.25, 0.46, 0.45, 0.84);
   overflow-x: hidden;
@@ -20,7 +20,8 @@ html, body {
 
 body {
   font-family: 'IBM Plex Sans', sans-serif;
-  background: linear-gradient(to right top, #8e44ad 0%, #3498db 100%);
+  backgound: #f1f1f3;
+  /*background: linear-gradient(to right top, #8e44ad 0%, #3498db 100%);*/
 }
 
 #app {
