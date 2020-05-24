@@ -182,7 +182,6 @@ const StyledForm = styled.form`
     border-left-color:rgb(78, 81, 94);
     border-bottom-color:rgb(78, 81, 94);
     border-right-color:rgb(78, 81, 94);
-    color:rgb(78, 81, 94);
     // border-top: 0.2px rgba(48, 37, 52, 0.2);
     // border-bottom: 0.2px rgba(48, 37, 52, 0.2);
     // border-left: 0.2px rgba(48, 37, 52, 0.2);
@@ -212,60 +211,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a', end
 @media screen and (min-width: 1200px){
     width:25%;
     padding-bottom: 8%
-    
-    border-bottom-color:rgb(78, 81, 94);
-initial.gigya-screen, .gigya-screen *
-border-bottom-left-radius:0px;
-border-bottom-right-radius:0px;
-border-bottom-style:none;
-border-bottom-width:0px;
-border-image-outset:0px;
-border-image-repeat:stretch;
-border-image-slice:100%;
-border-image-source:none;
-border-image-width:1;
-border-left-color:rgb(78, 81, 94);
-border-left-style:none;
-border-left-width:0px;
-border-right-color:rgb(78, 81, 94);
-border-right-style:none;
-border-right-width:0px;
-border-top-color:rgb(78, 81, 94);
-border-top-left-radius:0px;
-border-top-right-radius:0px;
-border-top-style:none;
-border-top-width:0px;
-box-sizing:content-box;
-clear:both;
-color:rgb(78, 81, 94);
-#4e515e.gigya-screen, .gigya-screen *
-#333body
-display:block;
-float:none;
-font-family:"Pandora Display", Arial, sans-serif;
-font-size:15px;
-height:511.5px;
-letter-spacing:0.3px;
-.3pxbody
-line-height:18px;
-margin-bottom:0px;
-margin-left:0px;
-margin-right:0px;
-margin-top:0px;
-max-width:100%;
-padding-bottom:0px;
-padding-left:0px;
-padding-right:0px;
-padding-top:0px;
-position:static;
-text-align:center;
-text-decoration-color:rgb(78, 81, 94);
-text-decoration-line:none;
-text-decoration-style:solid;
-text-size-adjust:100%;
-width:400px;
-zoom:1;
--webkit-box-direction:normal;
 }
 `
 
@@ -290,7 +235,24 @@ const StyledButton = styled.button`
     transition-property: background,color;
     -webkit-transition-duration: .2s;
     transition-duration: .2s;
-    
+    // border-bottom-color:rgb(78, 81, 94);
+// border-bottom-left-radius:0px;
+// border-bottom-right-radius:0px;
+// border-bottom-style:none;
+// border-bottom-width:0px;
+// border-image-outset:0px;
+// border-image-repeat:stretch;
+// border-image-slice:100%;
+// border-image-source:none;
+// border-image-width:1;
+//     box-shadow:rgba(48, 37, 52, 0.2);
+//     border-left-color:rgb(78, 81, 94);
+//     border-left-style:none;
+//     border-left-width:0px;
+//     border-right-color:rgb(78, 81, 94);
+//     border-right-style:none;
+//     border-right-width:0px;
+//     border-top-color:rgb(78, 81, 94);
     &:hover {
         color: white;
         background: black; // the color of the background of button when clicking
