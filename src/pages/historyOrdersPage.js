@@ -14,7 +14,7 @@ class HistoryOrdersPage extends React.Component{
         super(props);
 
         //Modified by Dongsheng, clean local test data, avoid null value error
-        const storedOrders = JSON.parse(localStorage.getItem('orders'))
+        // const storedOrders = JSON.parse(localStorage.getItem('orders'))
         this.state = {
             orders: [],
             isHistoryLoading: false,

@@ -25,6 +25,7 @@ class CurrentOrderPage extends React.Component{
         this._handleScan = this._handleScan.bind(this)
         this.reduce = this.reduce.bind(this)
         this.add = this.add.bind(this)
+        this.setQuantity = this.setQuantity.bind(this)
     }
 
     _handleSubmit(e){
@@ -216,6 +217,23 @@ class CurrentOrderPage extends React.Component{
             )
     }
 
+    setQuantity(barcode,quantity){
+        let newProducts = this.state.order.products.map(p=>{
+            if(+p.barcode === barcode){
+                let newP = {...p}
+                newP.quantity = quantity
+                return newP
+            }            
+            return p       
+        })
+        this.setState({
+            order: {
+                products: newProducts
+            }
+        })  
+    }
+
+
     render() {
         if(sessionStorage.getItem('user')){
             const {error, errorMassage} = this.state
@@ -254,7 +272,7 @@ class CurrentOrderPage extends React.Component{
                     <ul>
                         {   
                             this.state.order && this.state.order.products.map(e=>
-                                <Product product={e} key={e.barcode} edit toReduce={this.reduce} toAdd={this.add}></Product>
+                                <Product product={e} key={e.barcode} edit toReduce={this.reduce} toAdd={this.add} setQuantity={this.setQuantity}></Product>
                             )
                         }
                     </ul>

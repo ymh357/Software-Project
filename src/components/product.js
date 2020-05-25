@@ -5,20 +5,25 @@ class Product extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {value: ''};
-
-        this.handleChange = this.handleChange.bind(this);
+        this.state = {
+            quantity:'',
+        }
+        this._handleChange = this._handleChange.bind(this);
+        this._handleEditNum = this._handleEditNum.bind(this);
     }
 
-    handleChange(e) {
+    _handleChange(e) {
         // this.setState({value: event.target.value});
-        let quantity = e.target.quantity
+        let id = e.target.id
         this.setState({
-            [quantity]: e.target.value
+            [id]: e.target.value
         })
       }
-
+    _handleEditNum(e) {
+        e.preventDefault();
+        console.log(this.props)
+        this.props.setQuantity(this.props.product.barcode,this.state.quantity)
+    }
     render() {
         return (
             <li >
@@ -36,7 +41,10 @@ class Product extends React.Component {
                         {this.props.edit && <span><button onClick={(e)=>{this.props.toReduce(
                             this.props.product.barcode
                         )}}>-</button></span>}
-                        <input type="text" value={this.props.product.quantity} onChange={this.handleChange} />
+                        <li>{this.props.product.quantity}</li>
+                        {this.props.edit &&<form onSubmit={(e) => this._handleEditNum(e)}>
+                           <input type="text" value={this.state.quantity} id="quantity" onChange={this._handleChange} placeholder='input quantity here' ref={myInput=>this.myInput=myInput}/>
+                        </form>}
                         {/* <input>Quantity: {this.props.product.quantity}</input> */}
                         {this.props.edit && <span><button onClick={(e)=>{this.props.toAdd(
                             this.props.product.barcode
