@@ -32,7 +32,7 @@ class HomePage extends React.Component{
             return (
                 <>
                 <NavigationBar/>
-                <Slider  heading = "Example Slider" slides={slideData} history={this.props.history}/>
+                <Slider heading = "Example Slider" slides={slideData} history={this.props.history}/>
        
                 </>
             )

@@ -6,6 +6,7 @@ import Summary from "../components/Summary";
 import style from '../css/history.module.css';
 import NavigationBar from '../components/navigation_bar';
 import axios from 'axios';
+import styled from 'styled-components';
 
 
 class HistoryOrdersPage extends React.Component{
@@ -167,9 +168,12 @@ class HistoryOrdersPage extends React.Component{
             }
 
             return (
-                <>
+                <div>
                     <NavigationBar/>
-                    <h1 data-testid='historyOrders'>History Orders:</h1>
+                    <FormattedHeader>
+                    <h1 data-testid='historyOrders'>History Orders</h1>
+                    </FormattedHeader>
+
                     <table className={style.orderTable}>
                         <thead>
                             <tr>
@@ -184,7 +188,7 @@ class HistoryOrdersPage extends React.Component{
                         </tbody>
 
                     </table>
-                </>
+                </div>
             )
         }
         else{
@@ -200,3 +204,7 @@ class HistoryOrdersPage extends React.Component{
 }
 
 export default withRouter(HistoryOrdersPage)
+
+const FormattedHeader = styled.h1`
+    position: relative;
+    `

@@ -202,9 +202,6 @@ export default class Slider extends React.Component {
         title: "Go to next slide",
         handleClick: this.handleNextClick }))));
 
-
-
-
   }}
 
 

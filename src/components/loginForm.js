@@ -95,6 +95,7 @@ class LoginForm extends React.Component{
                     <Header>Welcome to SQUIZZ</Header>
                     <Fields>
                         <StyledInput>
+                            {/* Change the icon in login page */}
                             <Icon  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png" />
                             <Inputbox type="text" value={this.state.username} id="username" onChange={this._handleChange} placeholder='Username' required={true}/>
                         </StyledInput>
@@ -122,13 +123,14 @@ class LoginForm extends React.Component{
 
 export default LoginForm
 
+
 const Header = styled.div`
-    color: black; // this is the color of the content at the top of the greeting box
-// color: #afb1be;
+    color: black; // this is the color of the character at the top of the greeting box
     height: 60px;
     text-align: center;
     font-size: 16px;
 `
+
 const Fields = styled.div`
     height: fit-content;
     position: relative;
@@ -136,10 +138,11 @@ const Fields = styled.div`
     width:100%;
     box-shadow:rgba(48, 37, 52, 0.2);
 `
+
 const StyledInput = styled.div`
-position: relative;
-display: block;
-width:100%
+    position: relative;
+    display: block;
+    width:100%
 `
 
 const Inputbox = styled.input`
@@ -157,7 +160,6 @@ const Inputbox = styled.input`
     border-left: none;
     outline: none;
     font-family: 'Arial', sans-serif;
-    // font-family: 'Gudea', sans-serif;
     box-shadow: none;
 `
 
@@ -165,20 +167,8 @@ const Inputbox = styled.input`
 const StyledForm = styled.form`
     opacity: 1;
     top: 20px;
-    // -webkit-transition-timing-function: cubic-bezier(0.68, -0.25, 0.265, 0.85);
-    // -webkit-transition-property: opacity,box-shadow,top,left,-webkit-transform;
-    // transition-property: opacity,box-shadow,top,left,-webkit-transform;
-    // transition-property: transform,opacity,box-shadow,top,left;
-    // transition-property: transform,opacity,box-shadow,top,left,-webkit-transform;
-    // -webkit-transition-duration: .5s;
-    //     transition-duration: .5s;
-    // -webkit-transform-origin: 161px 100%;
-    //     transform-origin: 161px 100%;
-    // -webkit-transform: rotateX(0deg);
-    //     transform: rotateX(0deg);
     position: relative;
     width: fit-content;
-    // border-top: none;
     border-left-color:rgb(78, 81, 94);
     border-bottom-color:rgb(78, 81, 94);
     border-right-color:rgb(78, 81, 94);
@@ -187,6 +177,7 @@ const StyledForm = styled.form`
     // border-left: 0.2px rgba(48, 37, 52, 0.2);
     // border-right: 0.2px rgba(48, 37, 52, 0.2);
     // box-shadow:rgba(48, 37, 52, 0.2);
+    -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
     height: fit-content;
     position: absolute;
     left: 0;
@@ -195,33 +186,32 @@ const StyledForm = styled.form`
     top: 0;
     bottom: 0;
     padding: 100px 0px 8% 0px;
-// background: #35394a;
-/* Old browsers */
-/* FF3.6+ */
-/* Chrome,Safari4+ */
-/* Chrome10+,Safari5.1+ */
-/* Opera 11.10+ */
-/* IE10+ */
     background: white; // this is the color of the login box except the input box
-// background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+    
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 
-/* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a', endColorstr='#1f222e',GradientType=1 );
-/* IE6-9 fallback on horizontal gradient */
-@media screen and (min-width: 1200px){
-    width:25%;
-    padding-bottom: 8%
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a', endColorstr='#1f222e',GradientType=1 );
+    /* IE6-9 fallback on horizontal gradient */
+    @media screen and (min-width: 1200px){
+        width:25%;
+        padding-bottom: 8%
 }
 `
 
+
 const SubmitField = styled.div`
-position: relative;
-top: 35px;
-left: 0;
-width: 80%;
-right: 0;
-margin: auto;
-font-color: black;
+    position: relative;
+    top: 35px;
+    left: 0;
+    width: 80%;
+    right: 0;
+    margin: auto;
+    font-color: black;
 `
 
 const StyledButton = styled.button`
@@ -235,24 +225,7 @@ const StyledButton = styled.button`
     transition-property: background,color;
     -webkit-transition-duration: .2s;
     transition-duration: .2s;
-    // border-bottom-color:rgb(78, 81, 94);
-// border-bottom-left-radius:0px;
-// border-bottom-right-radius:0px;
-// border-bottom-style:none;
-// border-bottom-width:0px;
-// border-image-outset:0px;
-// border-image-repeat:stretch;
-// border-image-slice:100%;
-// border-image-source:none;
-// border-image-width:1;
-//     box-shadow:rgba(48, 37, 52, 0.2);
-//     border-left-color:rgb(78, 81, 94);
-//     border-left-style:none;
-//     border-left-width:0px;
-//     border-right-color:rgb(78, 81, 94);
-//     border-right-style:none;
-//     border-right-width:0px;
-//     border-top-color:rgb(78, 81, 94);
+
     &:hover {
         color: white;
         background: black; // the color of the background of button when clicking
@@ -269,7 +242,9 @@ const StyledButton = styled.button`
     }
 `
 
+
 const Icon = styled.img`
+// the following URI is the icon of username and password which are white !
     position: absolute;
     z-index: 1;
     left: 36px;
