@@ -3,6 +3,15 @@ import {withRouter} from 'react-router-dom'
 
 class OrderItem extends React.Component{
 
+    constructor(props) {
+        super(props);
+        this._handleClick = this._handleClick.bind(this)
+    }
+
+    _handleClick(){
+        this.props.history.push(`/order_detail_${this.props.order.keyPurchaseOrderID}`)
+    }
+
 
     render(){
         const price = this.props.order.products.reduce((acc, cur) => {
@@ -40,16 +49,17 @@ class OrderItem extends React.Component{
             return currentdate;
         }
 
+
+
         return (
-            <tr>
+            <tr onClick={this._handleClick}>
                 <td>{this.props.order.keyPurchaseOrderID}</td>
-                <td>{date()}</td>
                 <td>{this.props.order.bill_status.slice(7)}</td>
+                <td>{date()}</td>
                 <td>{price.toFixed(2)}</td>
-                <td><a href={`/order_detail_${this.props.order.keyPurchaseOrderID}`}>Have a look</a></td>
             </tr>
         )
     }
 }
 
-export default OrderItem
+export default withRouter(OrderItem)
