@@ -3,19 +3,31 @@
 }
 
 .orderTable{
-    border-collapse: collapse;
-    margin: 0  auto;
-    text-align: center;
-    table-layout: fixed;
-    width: 90%;
+    font-family: 'Arial';
+  margin: 25px auto;
+  border-collapse: collapse;
+  border: 1px solid #eee;
+  border-bottom: 2px solid #00cccc;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1), 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 20px 20px rgba(0, 0, 0, 0.05), 0px 30px 20px rgba(0, 0, 0, 0.05);
 }
 
-.orderTable th,td{
-    border: 1px solid #cad9ea;
-    color: #666;
-    height: 30px;
-    width: 20%;
+.orderTable th, .orderTable td{
+    color: #999;
+  border: 1px solid #eee;
+  padding: 12px 35px;
+  border-collapse: collapse;
 }
+
+.orderTable th{
+    background: #00cccc;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+table th.last {
+    border-right: none;
+  }
 
 @media only screen and (max-width: 800px) {
     .orderTable  th,td{
@@ -23,10 +35,16 @@
     }
 }
 
-.orderTable thead th
-{
-    background-color: #CCE8EB;
-}
+
+.orderTable tr:hover {
+    background: #f4f4f4;
+  }
+
+.orderTable tr:hover td {
+    color: #555;
+    cursor: pointer;
+  }
+
 .orderTable tr:nth-child(odd)
 {
     background: #fff;

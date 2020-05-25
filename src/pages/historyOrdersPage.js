@@ -177,7 +177,6 @@ class HistoryOrdersPage extends React.Component{
                                 <th>Order Invoiced Date</th>
                                 <th>Order status</th>
                                 <th>Order Price</th>
-                                <th>Order Details</th>
                             </tr>
                         </thead>
                         <tbody>
