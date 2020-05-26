@@ -46,6 +46,8 @@ class CurrentOrderPage extends React.Component{
         
         })
         console.log(lines);
+        console.log(lines.length)
+        if(lines.length!=0){
         axios({
                 method: 'post',           
                 url: 'api/purchase',
@@ -82,7 +84,13 @@ class CurrentOrderPage extends React.Component{
                     console.log(error)
                 }
             )
-
+            }
+        else{
+            this.setState({
+                error:true,
+                errorMassage: "empty cart!"
+            })
+        }
     }
 
     _handleChange(e){
