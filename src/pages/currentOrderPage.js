@@ -283,8 +283,8 @@ class CurrentOrderPage extends React.Component{
                     <form onSubmit={(e) => this._handleScan(e,this.state.barcode)}>
                     <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode' ref={myInput=>this.myInput=myInput}/>
                     </form>
-                    <button onClick={this._handleScan}>scan</button> 
-                    <button onClick={this._handleSave}>save</button>
+                    <button className={style.submitButton} onClick={this._handleScan}>scan</button> 
+                    <button className={style.submitButton} onClick={this._handleSave}>save</button>
                 </>
 
             )

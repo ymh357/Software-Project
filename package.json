@@ -43,6 +43,7 @@
     "babel-polyfill": "^6.26.0",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.0",
+    "file-loader": "^6.0.0",
     "http-proxy-middleware": "^1.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -50,7 +51,8 @@
     "react-router-dom": "^5.1.2",
     "react-test-renderer": "^16.13.1",
     "styled-components": "^5.1.0",
-    "styled-icons": "^10.2.1"
+    "styled-icons": "^10.2.1",
+    "url-loader": "^4.1.0"
   },
   "jest": {
     "moduleFileExtensions": [
