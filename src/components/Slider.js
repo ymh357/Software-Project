@@ -11,13 +11,13 @@ const slideData = [
   index: 0,
   headline: 'Current Order',
   button: 'Shop now',
-  src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/fashion.jpg' },
+  src: '../assets/cart.png' },
 
 {
   index: 1,
   headline: 'History Order',
   button: 'Book travel',
-  src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/forest.jpg' },
+  src: '../asstes/history.png' },
 
 ];
 
