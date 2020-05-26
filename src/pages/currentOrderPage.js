@@ -259,8 +259,8 @@ class CurrentOrderPage extends React.Component{
                             <Summary products={this.state.order.products}/>
 
                         
-                            <button className={style.submitButton} onClick={this._handleSubmit}>Submit</button>
-                            <button className={style.editButton} onClick={this._handleEdit}>Edit</button>
+                            <button className={style.lightButton} onClick={this._handleSubmit}>Submit</button>
+                            <button className={style.darkButton} onClick={this._handleEdit}>Edit</button>
                         </div>
                     </>
 
@@ -272,6 +272,7 @@ class CurrentOrderPage extends React.Component{
                 <>
                     <NavigationBar/>
                     <h1 className={style.title}>Current Order editing:</h1>
+                    <div className={style.body}>
                     {error && <ErrorMessage massage={errorMassage}/>}
                     <ul>
                         {   
@@ -283,8 +284,9 @@ class CurrentOrderPage extends React.Component{
                     <form onSubmit={(e) => this._handleScan(e,this.state.barcode)}>
                     <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode' ref={myInput=>this.myInput=myInput}/>
                     </form>
-                    <button onClick={this._handleScan}>scan</button> 
-                    <button onClick={this._handleSave}>save</button>
+                    <button className={style.lightButton} onClick={this._handleScan}>Scan</button> 
+                    <button className={style.darkButton} onClick={this._handleSave}>Save</button>
+                    </div>
                 </>
 
             )

@@ -12,7 +12,7 @@ text-align: center;
 
 }
 
-.editButton{
+.darkButton{
     font-size: 12px;
     background-color: #3457AE;
     border: none;
@@ -22,7 +22,7 @@ text-align: center;
 
 }
 
-.submitButton{
+.lightButton{
     border-radius: 10%;
     background-color: cornsilk;
     font-size: 12px;
