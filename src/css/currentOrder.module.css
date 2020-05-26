@@ -12,4 +12,25 @@ text-align: center;
 
 }
 
+.editButton{
+    font-size: 12px;
+    background-color: #3457AE;
+    border: none;
+    border-radius: 10%;
+    font-family: "Open Sans";
+    padding: 10px 24px;
+
+}
+
+.submitButton{
+    border-radius: 10%;
+    background-color: cornsilk;
+    font-size: 12px;
+    font-family: "Open Sans";
+    padding: 10px 24px;
+    border: 5px;
+
+
+}
+
 

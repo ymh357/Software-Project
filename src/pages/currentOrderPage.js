@@ -259,8 +259,8 @@ class CurrentOrderPage extends React.Component{
                             <Summary products={this.state.order.products}/>
 
                         
-                            <button onClick={this._handleSubmit}>submit</button>
-                            <button onClick={this._handleEdit}>edit</button>
+                            <button className={style.submitButton} onClick={this._handleSubmit}>Submit</button>
+                            <button className={style.editButton} onClick={this._handleEdit}>Edit</button>
                         </div>
                     </>
 
