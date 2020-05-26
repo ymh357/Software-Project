@@ -17,7 +17,7 @@ const slideData = [
   index: 1,
   headline: 'History Order',
   button: 'Book travel',
-  src: '../asstes/history.png' },
+  src: '../assets/history.jpg' },
 
 ];
 

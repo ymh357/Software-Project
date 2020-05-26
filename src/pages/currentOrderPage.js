@@ -5,6 +5,8 @@ import Summary from "../components/Summary";
 import axios from 'axios';
 import NavigationBar from '../components/navigation_bar';
 import ErrorMessage from '../components/errorMessage'
+import style from '../css/currentOrder.module.css';
+
 
 class CurrentOrderPage extends React.Component{
 
@@ -242,22 +244,24 @@ class CurrentOrderPage extends React.Component{
                 return (
                     <>
                         <NavigationBar/>
-                        <h1 data-testid='currentOrder'>Current Order:</h1>
-                        {error && <ErrorMessage massage={errorMassage}/>}
-                        <ul>
-                            {
-                                 this.state.order.products.map(e=>{
-                                    if(e.quantity>0)
-                                        return <Product product={e} key={e.barcode}/>
-                                    return null
-                               })
-                            }
-                        </ul>
-                        <Summary products={this.state.order.products}/>
+                        <div className={style.body}>
+                            <h1 className={style.title} data-testid='currentOrder'>Current Order:</h1>
+                            {error && <ErrorMessage massage={errorMassage}/>}
+                            <ul>
+                                {
+                                    this.state.order.products.map(e=>{
+                                        if(e.quantity>0)
+                                            return <Product product={e} key={e.barcode}/>
+                                        return null
+                                })
+                                }
+                            </ul>
+                            <Summary products={this.state.order.products}/>
 
-                      
-                        <button onClick={this._handleSubmit}>submit</button>
-                        <button onClick={this._handleEdit}>edit</button>
+                        
+                            <button onClick={this._handleSubmit}>submit</button>
+                            <button onClick={this._handleEdit}>edit</button>
+                        </div>
                     </>
 
                 )
@@ -267,7 +271,7 @@ class CurrentOrderPage extends React.Component{
             return (
                 <>
                     <NavigationBar/>
-                    <h1>Current Order editing:</h1>
+                    <h1 className={style.title}>Current Order editing:</h1>
                     {error && <ErrorMessage massage={errorMassage}/>}
                     <ul>
                         {   

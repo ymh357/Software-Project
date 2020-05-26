@@ -170,9 +170,9 @@ class HistoryOrdersPage extends React.Component{
             return (
                 <div>
                     <NavigationBar/>
-                    <FormattedHeader>
+                    {/* <FormattedHeader> */}
                     <h1 className= {style.title} data-testid='historyOrders'>History Orders</h1>
-                    </FormattedHeader>
+                    {/* </FormattedHeader> */}
 
                     <table className={style.orderTable}>
                         <thead>
@@ -205,6 +205,6 @@ class HistoryOrdersPage extends React.Component{
 
 export default withRouter(HistoryOrdersPage)
 
-const FormattedHeader = styled.h1`
-    position: relative;
-    `
+// const FormattedHeader = styled.h1`
+//     position: relative;
+//     `
