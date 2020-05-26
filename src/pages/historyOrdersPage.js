@@ -171,16 +171,16 @@ class HistoryOrdersPage extends React.Component{
                 <div>
                     <NavigationBar/>
                     <FormattedHeader>
-                    <h1 data-testid='historyOrders'>History Orders</h1>
+                    <h1 className= {style.title} data-testid='historyOrders'>History Orders</h1>
                     </FormattedHeader>
 
                     <table className={style.orderTable}>
                         <thead>
                             <tr>
                                 <th>Order ID</th>
-                                <th>Order Invoiced Date</th>
-                                <th>Order status</th>
-                                <th>Order Price</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th> Amount</th>
                             </tr>
                         </thead>
                         <tbody>
