@@ -29,6 +29,7 @@
 .productCustomizeContainer{
     display: inline-block;
     width: 20%;
+    vertical-align: middle;
 }
 .productCustomize{
     display: inline-block;

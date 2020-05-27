@@ -35,21 +35,22 @@ class Product extends React.Component {
                 </span>
 
                 <span className={style.productCustomizeContainer}>
-                    <span className={style.productCustomize}>Total Price: {`${+((this.props.product.price||this.props.product.priceExTax) * +this.props.product.quantity).toFixed(2)}`}</span>
-
+                    
                     <span className={style.productCustomize}>
                         {this.props.edit && <span><button onClick={(e)=>{this.props.toReduce(
                             this.props.product.barcode
                         )}}>-</button></span>}
-                        <li>{this.props.product.quantity}</li>
-                        {this.props.edit &&<form onSubmit={(e) => this._handleEditNum(e)}>
-                           <input type="text" value={this.state.quantity} id="quantity" onChange={this._handleChange} placeholder='input quantity here' ref={myInput=>this.myInput=myInput}/>
-                        </form>}
+                        <span>Quantity:{this.props.product.quantity}</span>
                         {/* <input>Quantity: {this.props.product.quantity}</input> */}
                         {this.props.edit && <span><button onClick={(e)=>{this.props.toAdd(
                             this.props.product.barcode
                         )}}>+</button></span> }
+                        {this.props.edit &&<form onSubmit={(e) => this._handleEditNum(e)}>
+                           <input type="text" value={this.state.quantity} id="quantity" onChange={this._handleChange} placeholder='input quantity here' ref={myInput=>this.myInput=myInput}/>
+                        </form>}
                     </span>
+                    <span className={style.productCustomize}>Total Price: {`${+((this.props.product.price||this.props.product.priceExTax) * +this.props.product.quantity).toFixed(2)}`}</span>
+
 
                 </span>
 

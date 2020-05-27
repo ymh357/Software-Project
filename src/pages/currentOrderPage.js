@@ -220,19 +220,32 @@ class CurrentOrderPage extends React.Component{
     }
 
     setQuantity(barcode,quantity){
-        let newProducts = this.state.order.products.map(p=>{
-            if(+p.barcode === barcode){
-                let newP = {...p}
-                newP.quantity = quantity
-                return newP
-            }            
-            return p       
-        })
-        this.setState({
-            order: {
-                products: newProducts
-            }
-        })  
+        
+        if(quantity>0){      
+            let newProducts = this.state.order.products.map(p=>{
+                if(+p.barcode === barcode){
+                    let newP = {...p}
+                    newP.quantity = quantity
+                    return newP
+                }            
+                return p       
+            })
+            this.setState({
+                order: {
+                    products: newProducts
+                }
+            })  
+        }
+        else{
+            let filterProducts = this.state.order.products.filter(p=>{
+                return (p.barcode!=barcode)
+            })
+            this.setState({
+                order: {
+                    products: filterProducts
+                }
+            }) 
+        }
     }
 
 
@@ -281,11 +294,17 @@ class CurrentOrderPage extends React.Component{
                             )
                         }
                     </ul>
+                    <div className={style.body}>
                     <form onSubmit={(e) => this._handleScan(e,this.state.barcode)}>
                     <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode' ref={myInput=>this.myInput=myInput}/>
                     </form>
+<<<<<<< HEAD
                     <button className={style.lightButton} onClick={this._handleScan}>Scan</button> 
                     <button className={style.darkButton} onClick={this._handleSave}>Save</button>
+=======
+                    <button className={style.submitButton} onClick={this._handleScan}>scan</button> 
+                    <button className={style.submitButton} onClick={this._handleSave}>save</button>
+>>>>>>> b2c444b231ea7c06d086ee138b2f6b360c89b207
                     </div>
                 </>
 
