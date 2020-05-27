@@ -228,19 +228,32 @@ class CurrentOrderPage extends React.Component{
     }
 
     setQuantity(barcode,quantity){
-        let newProducts = this.state.order.products.map(p=>{
-            if(+p.barcode === barcode){
-                let newP = {...p}
-                newP.quantity = quantity
-                return newP
-            }            
-            return p       
-        })
-        this.setState({
-            order: {
-                products: newProducts
-            }
-        })  
+        
+        if(quantity>0){      
+            let newProducts = this.state.order.products.map(p=>{
+                if(+p.barcode === barcode){
+                    let newP = {...p}
+                    newP.quantity = quantity
+                    return newP
+                }            
+                return p       
+            })
+            this.setState({
+                order: {
+                    products: newProducts
+                }
+            })  
+        }
+        else{
+            let filterProducts = this.state.order.products.filter(p=>{
+                return (p.barcode!=barcode)
+            })
+            this.setState({
+                order: {
+                    products: filterProducts
+                }
+            }) 
+        }
     }
 
 
