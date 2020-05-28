@@ -35,11 +35,11 @@ class NavigationBar extends React.PureComponent{
                         <li>
                             <Logout className={style.logoutBtn }>logout</Logout>
                         </li>
-                        <li>
-                        <a href="#" className={style.icon} onClick={this.toggle}>
-                        pop
-                    </a>
-                        </li>
+                        <div>
+                            <a href="#" className={style.icon} onClick={this.toggle}>
+                            pop
+                            </a>
+                        </div>
 
 
                     </ul>
