@@ -48,8 +48,6 @@ class CurrentOrderPage extends React.Component{
         
         })
         console.log(lines);
-        console.log(lines.length)
-        if(lines.length!=0){
         axios({
                 method: 'post',           
                 url: 'api/purchase',
@@ -86,13 +84,7 @@ class CurrentOrderPage extends React.Component{
                     console.log(error)
                 }
             )
-            }
-        else{
-            this.setState({
-                error:true,
-                errorMassage: "empty cart!"
-            })
-        }
+
     }
 
     _handleChange(e){
@@ -281,8 +273,8 @@ class CurrentOrderPage extends React.Component{
                             <Summary products={this.state.order.products}/>
 
                         
-                            <button className={style.submitButton} onClick={this._handleSubmit}>Submit</button>
-                            <button className={style.editButton} onClick={this._handleEdit}>Edit</button>
+                            <button className={style.lightButton} onClick={this._handleSubmit}>Submit</button>
+                            <button className={style.darkButton} onClick={this._handleEdit}>Edit</button>
                         </div>
                     </>
 
@@ -294,20 +286,22 @@ class CurrentOrderPage extends React.Component{
                 <>
                     <NavigationBar/>
                     <h1 className={style.title}>Current Order editing:</h1>
-                    {error && <ErrorMessage massage={errorMassage}/>}
-                    <ul>
-                        {   
-                            this.state.order && this.state.order.products.map(e=>
-                                <Product product={e} key={e.barcode} edit toReduce={this.reduce} toAdd={this.add} setQuantity={this.setQuantity}></Product>
-                            )
-                        }
-                    </ul>
                     <div className={style.body}>
-                    <form onSubmit={(e) => this._handleScan(e,this.state.barcode)}>
-                    <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode' ref={myInput=>this.myInput=myInput}/>
-                    </form>
-                    <button className={style.submitButton} onClick={this._handleScan}>scan</button> 
-                    <button className={style.submitButton} onClick={this._handleSave}>save</button>
+                        {error && <ErrorMessage massage={errorMassage}/>}
+                        <ul>
+                            {   
+                                this.state.order && this.state.order.products.map(e=>
+                                    <Product product={e} key={e.barcode} edit toReduce={this.reduce} toAdd={this.add} setQuantity={this.setQuantity}></Product>
+                                )
+                            }
+                        </ul>
+                        <div className={style.body}>
+                            <form onSubmit={(e) => this._handleScan(e,this.state.barcode)}>
+                                <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode' ref={myInput=>this.myInput=myInput}/>
+                            </form>
+                            <button className={style.submitButton} onClick={this._handleScan}>scan</button> 
+                            <button className={style.submitButton} onClick={this._handleSave}>save</button>
+                        </div>
                     </div>
                 </>
 

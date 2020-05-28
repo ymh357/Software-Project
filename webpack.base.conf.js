@@ -23,27 +23,15 @@ module.exports = {
                 test: /^(?!.*?\.module).*\.css$/,
                 use: ['style-loader', 'css-loader']
               },
-            {
-            test: /\.module\.css$/,
-            use: ['style-loader', {
-                loader: 'css-loader',
-                options: {
-                modules: true
-                }
-            }]
-            },
-            {
-                test: /\.(png|jpg|gif|jpeg)$/,
-                use: [{
-                    loader: 'url-loader',
-                     // loader: 'file-loader',
-                    options: {
-                        esModule: false, // 这里设置为false
-                        name: '[name].[ext]',
-                        limit: 10240
-                 }
-                 }]
-            }
+              {
+                test: /\.module\.css$/,
+                use: ['style-loader', {
+                  loader: 'css-loader',
+                  options: {
+                    modules: true
+                  }
+                }]
+              }
 
 
         ]

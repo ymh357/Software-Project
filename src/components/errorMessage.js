@@ -38,12 +38,12 @@ const Styleddiv = styled.div`
         pointer-events: none;
         position: fixed;
         width: 50%;
-        // padding: 10px;
+        padding: 10px;
         background: white;
-        box-shadow: 0 0 15px black;
-        top: 25%;
+        box-shadow: 0 0 25px black;
+        top: 50%;
         left: 50%;
-        margin: 0 0 0 -25%;
+        margin: -25% 0 0 -25%;
         opacity: 0.5;
         -moz-transform: scale(1.5);
         -ms-transform: scale(1.5);

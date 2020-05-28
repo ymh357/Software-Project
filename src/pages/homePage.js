@@ -12,14 +12,14 @@ const slideData = [
       index: 0,
       headline: 'Current Orders',
       button: 'Shop now',
-      src: require('../assets/cart.png'),
+      src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/fashion.jpg',
         link: '/order' },
     
     {
       index: 1,
       headline: 'History Orders',
       button: 'Browse My History',
-      src: require('../assets/history.jpg') ,
+      src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/forest.jpg' ,
       link: '/viewHistoryOrder'},
     
     ];
