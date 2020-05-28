@@ -3,6 +3,10 @@ import {withRouter} from 'react-router-dom'
 import Product from "../components/product";
 import Summary from "../components/Summary";
 import axios from 'axios';
+import NavigationBar from '../components/navigation_bar';
+import ErrorMessage from '../components/errorMessage'
+import style from '../css/currentOrder.module.css';
+
 
 class CurrentOrderPage extends React.Component{
 
@@ -10,8 +14,12 @@ class CurrentOrderPage extends React.Component{
         super(props);
         const order = JSON.parse(localStorage.getItem('current_order'))
         this.state = {
-            order,
+            order:{
+                products:[]
+            },
             edit: false,
+            error: false,
+            errorMassage:'',
             barcode:'',
         }
         this._handleEdit = this._handleEdit.bind(this)
@@ -21,31 +29,30 @@ class CurrentOrderPage extends React.Component{
         this._handleScan = this._handleScan.bind(this)
         this.reduce = this.reduce.bind(this)
         this.add = this.add.bind(this)
+        this.setQuantity = this.setQuantity.bind(this)
     }
 
     _handleSubmit(e){
-        let orders = JSON.parse(localStorage.getItem('orders'))
-        let id = orders[orders.length-1].id
-        orders.push({id:id+1,...this.state.order})
-        localStorage.setItem('orders', JSON.stringify(orders))
         let lines =[]
         this.state.order.products.map(item => {
             let line = {
                 lineType:"PRODUCT",
                 productId:item.keyProductCode,
-                productCode:item.id,
+                productCode:item.productCode,
                 quantity:item.quantity,
                 priceExTax:item.price,
                 priceTotalExTax:item.price*item.quantity,
-                productName:item.name,
+                productName:item.productName,
             }
             lines.push(line)
         
         })
         console.log(lines);
+        console.log(lines.length)
+        if(lines.length!=0){
         axios({
-                method: 'post',           
-                url: 'api/purchase',
+                method: 'post',           
+                url: 'api/purchase',
                 headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
                 data:{
                     "sessionKey": sessionStorage.getItem("sessionKey"),
@@ -61,12 +68,16 @@ class CurrentOrderPage extends React.Component{
                     if (status=="success"){
                         //TODO find another method to store all puchaseID, now only the latest puchaseID will be stored.
                         localStorage.setItem("puchaseID",puchaseID)
-                        alert(message)
+                        alert("Submit Successfully!")
                         this.props.history.push('/')
                     }
                     else{
                         console.log(message)
-                        alert(message)                       
+                        this.setState({
+                            error:true,
+                            errorMassage: message
+                        })
+                        //alert(message)                       
                     }
                 }
             )
@@ -75,7 +86,13 @@ class CurrentOrderPage extends React.Component{
                     console.log(error)
                 }
             )
-
+            }
+        else{
+            this.setState({
+                error:true,
+                errorMassage: "empty cart!"
+            })
+        }
     }
 
     _handleChange(e){
@@ -100,9 +117,7 @@ class CurrentOrderPage extends React.Component{
     _handleScan(e){
         e.preventDefault();
         let scanCode = parseInt(this.state.barcode);
-        console.log(scanCode);
-        // TODO: fix bug caused by asynchronous calls, the following judgement will result in this bug. 
-        
+        console.log(scanCode);        
         const res = this.state.order.products.some(item => { return item.barcode == scanCode; });
         console.log(this.state.order.products);
         console.log(res);
@@ -161,9 +176,10 @@ class CurrentOrderPage extends React.Component{
     }
     // product price retrieve request 
     remoteAdd(barcode){
+
         axios({
-                method: 'post',           
-                url: 'api/price',
+                method: 'post',           
+                url: 'api/price',
                 headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
                 data:{
                     "sessionKey": sessionStorage.getItem("sessionKey"),
@@ -177,9 +193,10 @@ class CurrentOrderPage extends React.Component{
                     var {status} = response.data
                     var {productname, price, keyProductCode,productCode,uri_large,uri_medium,uri_small} = response.data.data
                     let setP =(barcode, productCode,productname,price,productId,l_img,m_img,s_img) =>{                       
-                        let newProduct = {id:productCode,name:productname,price:price,quantity: 1, barcode: barcode,keyProductCode:productId,uri_large:l_img,uri_medium:m_img,uri_small:s_img}
+                        let newProduct = {productCode:productCode,productName:productname,price:price,quantity: 1, barcode: barcode,keyProductCode:productId,uri_large:l_img,uri_medium:m_img,uri_small:s_img}
                         let newProductList = this.state.order.products.concat(newProduct)
                         this.setState({
+                            error:false,
                             order: {
                                 products: newProductList
                             }
@@ -197,7 +214,11 @@ class CurrentOrderPage extends React.Component{
                         }
                     }
                     else{
-                        alert("invalid barcode")
+                        //alert("invalid barcode")
+                        this.setState({
+                            error:true,
+                            errorMassage: "invalid barcode"
+                        })
                     }
                 }
             )
@@ -208,26 +229,61 @@ class CurrentOrderPage extends React.Component{
             )
     }
 
+    setQuantity(barcode,quantity){
+        
+        if(quantity>0){      
+            let newProducts = this.state.order.products.map(p=>{
+                if(+p.barcode === barcode){
+                    let newP = {...p}
+                    newP.quantity = quantity
+                    return newP
+                }            
+                return p       
+            })
+            this.setState({
+                order: {
+                    products: newProducts
+                }
+            })  
+        }
+        else{
+            let filterProducts = this.state.order.products.filter(p=>{
+                return (p.barcode!=barcode)
+            })
+            this.setState({
+                order: {
+                    products: filterProducts
+                }
+            }) 
+        }
+    }
+
+
     render() {
         if(sessionStorage.getItem('user')){
-            if(!this.state.edit && this.state.order.products!=null){
+            const {error, errorMassage} = this.state
+            if(!this.state.edit){
                 return (
                     <>
-                        <h1>Current Order:</h1>
-                        <ul>
-                            {
-                                this.state.order.products.map(e=>{
-                                    if(e.quantity>0)
-                                        return <Product product={e} key={e.barcode}/>
-                                    return null
-                               })
-                            }
-                        </ul>
-                        <Summary products={this.state.order.products}/>
+                        <NavigationBar/>
+                        <div className={style.body}>
+                            <h1 className={style.title} data-testid='currentOrder'>Current Order:</h1>
+                            {error && <ErrorMessage massage={errorMassage}/>}
+                            <ul>
+                                {
+                                    this.state.order.products.map(e=>{
+                                        if(e.quantity>0)
+                                            return <Product product={e} key={e.barcode}/>
+                                        return null
+                                })
+                                }
+                            </ul>
+                            <Summary products={this.state.order.products}/>
 
-                      
-                        <button onClick={this._handleSubmit}>submit</button>
-                        <button onClick={this._handleEdit}>edit</button>
+                        
+                            <button className={style.submitButton} onClick={this._handleSubmit}>Submit</button>
+                            <button className={style.editButton} onClick={this._handleEdit}>Edit</button>
+                        </div>
                     </>
 
                 )
@@ -236,19 +292,23 @@ class CurrentOrderPage extends React.Component{
             
             return (
                 <>
-                    <h1>Current Order editing:</h1>
+                    <NavigationBar/>
+                    <h1 className={style.title}>Current Order editing:</h1>
+                    {error && <ErrorMessage massage={errorMassage}/>}
                     <ul>
                         {   
-                            this.state.order.products.map(e=>
-                                <Product product={e} key={e.barcode} edit toReduce={this.reduce} toAdd={this.add}></Product>
+                            this.state.order && this.state.order.products.map(e=>
+                                <Product product={e} key={e.barcode} edit toReduce={this.reduce} toAdd={this.add} setQuantity={this.setQuantity}></Product>
                             )
                         }
                     </ul>
+                    <div className={style.body}>
                     <form onSubmit={(e) => this._handleScan(e,this.state.barcode)}>
                     <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode' ref={myInput=>this.myInput=myInput}/>
                     </form>
-                    <button onClick={this._handleScan}>scan</button> 
-                    <button onClick={this._handleSave}>save</button>
+                    <button className={style.submitButton} onClick={this._handleScan}>scan</button> 
+                    <button className={style.submitButton} onClick={this._handleSave}>save</button>
+                    </div>
                 </>
 
             )

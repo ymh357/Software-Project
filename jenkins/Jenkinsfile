@@ -34,7 +34,7 @@ pipeline {
 
         stage('Test'){
             steps {
-                sh 'echo TODO: Test Script'
+                sh 'npm run test'
             }
         }
 

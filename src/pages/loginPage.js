@@ -1,76 +1,29 @@
 import React from "react";
 import axios from 'axios';
 import {withRouter} from 'react-router-dom'
-import loginStyle from '../css/login.module.css'
+import LoginForm from '../components/loginForm'
+import styled from 'styled-components';
+
 class LoginPage extends React.Component{
 
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            password:''
         }
-        this._handleChange = this._handleChange.bind(this)
-        this._handleSubmit = this._handleSubmit.bind(this)
-    }
-
-    _handleChange(e){
-        let id = e.target.id
-        this.setState({
-            [id]: e.target.value
-        })
-    }
-
-    _handleSubmit(e){
-        e.preventDefault();//test need
-        axios({
-                method: 'post',           
-                url: 'api/login',
-                headers: {'Content-Type': 'application/JSON; charset=UTF-8'},
-                data:{
-                    "username": this.state.username,
-                    "password": this.state.password,
-                    
-                }
-            }             
-            )
-            .then(
-                (response)=>{
-                    console.log(response);
-                    let {status, session_id} = response.data;
-                    console.log(status);
-                    alert(status);
-                    if(status=="LOGIN_SUCCESS"||status=="LOGIN_EXIST"){
-                        sessionStorage.setItem('user', this.state.username);
-                        sessionStorage.setItem('sessionKey', session_id);
-                        this.setState({
-                        })
-                    } 
-                }
-            )
-            .catch(
-                (error)=>{
-                    console.log(error)
-                }
-            )
+   
     }
 
     render() {
-
-        if(sessionStorage.getItem('user')){
-            this.props.history.push('/')
-        }
         return (
 
-            <div className={loginStyle.container}>
-                <h1>Login</h1>
-                <img className={loginStyle.loginImg} src='https://image.flaticon.com/icons/svg/547/547432.svg' alt={'login icon'}/>
-                <form onSubmit={this._handleSubmit} className={loginStyle.loginForm}>
-                    <input type="text" value={this.state.username} id="username" onChange={this._handleChange} placeholder='Username'/>
-                    <input type="text" value={this.state.password} id="password"  onChange={this._handleChange} placeholder='Password'/>
-                    <button type="submit" className={loginStyle.loginBtn}>Login</button>
-                </form>
-            </div>
+            <Page>
+                    <div>
+                        {/*<Loginform>*/}
+                        <LoginForm />
+                        {/*</Loginform>*/}
+                    </div>
+                    
+            </Page>
 
         )
 
@@ -78,3 +31,24 @@ class LoginPage extends React.Component{
 }
 
 export default withRouter(LoginPage)
+
+const Page = styled.div`
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    -webkit-justify-content: center;
+    background: #f1f1f3; // this is the color of the background of the login page
+    // background: white;
+    height: 100%
+`
+
+// const Loginform = styled.LoginForm`
+//     background-color = lightgrey;
+// `
+
+const Logo = styled.img`
+    max-width: 30%;
+    max-height: 30%;
+`
