@@ -12,7 +12,8 @@ class CurrentOrderPage extends React.Component{
 
     constructor(props) {
         super(props);
-        const order = JSON.parse(localStorage.getItem('current_order'))
+        //todo: require initialization
+        //const order = JSON.parse(localStorage.getItem('current_order'))
         this.state = {
             order:{
                 products:[]
