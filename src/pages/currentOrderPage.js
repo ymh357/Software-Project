@@ -286,25 +286,21 @@ class CurrentOrderPage extends React.Component{
                     <NavigationBar/>
                     <h1 className={style.title}>Current Order editing:</h1>
                     <div className={style.body}>
-                    {error && <ErrorMessage massage={errorMassage}/>}
-                    <ul>
-                        {   
-                            this.state.order && this.state.order.products.map(e=>
-                                <Product product={e} key={e.barcode} edit toReduce={this.reduce} toAdd={this.add} setQuantity={this.setQuantity}></Product>
-                            )
-                        }
-                    </ul>
-                    <div className={style.body}>
-                    <form onSubmit={(e) => this._handleScan(e,this.state.barcode)}>
-                    <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode' ref={myInput=>this.myInput=myInput}/>
-                    </form>
-<<<<<<< HEAD
-                    <button className={style.lightButton} onClick={this._handleScan}>Scan</button> 
-                    <button className={style.darkButton} onClick={this._handleSave}>Save</button>
-=======
-                    <button className={style.submitButton} onClick={this._handleScan}>scan</button> 
-                    <button className={style.submitButton} onClick={this._handleSave}>save</button>
->>>>>>> b2c444b231ea7c06d086ee138b2f6b360c89b207
+                        {error && <ErrorMessage massage={errorMassage}/>}
+                        <ul>
+                            {   
+                                this.state.order && this.state.order.products.map(e=>
+                                    <Product product={e} key={e.barcode} edit toReduce={this.reduce} toAdd={this.add} setQuantity={this.setQuantity}></Product>
+                                )
+                            }
+                        </ul>
+                        <div className={style.body}>
+                            <form onSubmit={(e) => this._handleScan(e,this.state.barcode)}>
+                                <input type="text" value={this.state.barcode} id="barcode" onChange={this._handleChange} placeholder='barcode' ref={myInput=>this.myInput=myInput}/>
+                            </form>
+                            <button className={style.submitButton} onClick={this._handleScan}>scan</button> 
+                            <button className={style.submitButton} onClick={this._handleSave}>save</button>
+                        </div>
                     </div>
                 </>
 
