@@ -28,7 +28,7 @@
 }
 
 .orderTable th{
-  background: rgba(0, 35, 80, 0.5);
+  background:#00cccc;
   color: #fff;
   text-transform: uppercase;
   font-size: 12px;
@@ -41,13 +41,6 @@
 .orderTable th.last {
     border-right: none;
   }
-
-@media only screen and (max-width: 800px) {
-    .orderTable  th,td{
-        overflow: scroll;
-        
-    }
-}
 
 
 .orderTable tr:hover {

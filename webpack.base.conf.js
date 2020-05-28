@@ -23,21 +23,33 @@ module.exports = {
                 test: /^(?!.*?\.module).*\.css$/,
                 use: ['style-loader', 'css-loader']
               },
-              {
-                test: /\.module\.css$/,
-                use: ['style-loader', {
-                  loader: 'css-loader',
-                  options: {
-                    modules: true
-                  }
-                }]
-              }
+            {
+            test: /\.module\.css$/,
+            use: ['style-loader', {
+                loader: 'css-loader',
+                options: {
+                modules: true
+                }
+            }]
+            },
+            {
+                test: /\.(png|jpg|gif|jpeg)$/,
+                use: [{
+                    loader: 'url-loader',
+                     // loader: 'file-loader',
+                    options: {
+                        esModule: false, // 这里设置为false
+                        name: '[name].[ext]',
+                        limit: 10240
+                 }
+                 }]
+            }
 
 
         ]
     },
     devServer: {
-        host: '0.0.0.0',
+        host: '127.0.0.1',
         historyApiFallback: true,
         proxy: {
         '/api/*':{
