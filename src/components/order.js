@@ -45,9 +45,6 @@ margin-bottom: .5rem;
 background: #fff;
 border: 1px solid #ccc;
 position: relative;
-max-width: 1280px;
-    min-width: 768px;
-    margin: 0 auto;
 `
 
 const CardHead = styled.h1`

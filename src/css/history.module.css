@@ -37,11 +37,6 @@ table th.last {
     border-right: none;
   }
 
-@media only screen and (max-width: 800px) {
-    .orderTable  th,td{
-        overflow: scroll;
-    }
-}
 
 
 .orderTable tr:hover {
