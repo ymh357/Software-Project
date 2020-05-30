@@ -12,9 +12,12 @@ class CurrentOrderPage extends React.Component{
 
     constructor(props) {
         super(props);
-        const order = JSON.parse(localStorage.getItem('current_order'))
+        //todo: require initialization
+        //const order = JSON.parse(localStorage.getItem('current_order'))
         this.state = {
-            order,
+            order:{
+                products:[]
+            },
             edit: false,
             error: false,
             errorMassage:'',
@@ -260,8 +263,7 @@ class CurrentOrderPage extends React.Component{
     render() {
         if(sessionStorage.getItem('user')){
             const {error, errorMassage} = this.state
-            //Modified by Dongsheng, avoid null value error
-            if(!this.state.edit && this.state.order && this.state.order.products!=null){
+            if(!this.state.edit){
                 return (
                     <>
                         <NavigationBar/>

@@ -11,6 +11,7 @@
 }
 
 .orderTable{
+    width: 90%;
     font-family: 'Arial';
     margin: 25px auto;
     border-collapse: collapse;
@@ -22,7 +23,7 @@
 .orderTable th, .orderTable td{
     color: #999;
     border: 1px solid #eee;
-    padding: 12px 35px;
+    padding: 12px 0;
     border-collapse: collapse;
 }
 
@@ -31,17 +32,15 @@
   color: #fff;
   text-transform: uppercase;
   font-size: 12px;
+  width: 20%;
+}
+.orderTable th,td{
+  width: 20%;
 }
 
-table th.last {
+.orderTable th.last {
     border-right: none;
   }
-
-@media only screen and (max-width: 800px) {
-    .orderTable  th,td{
-        overflow: scroll;
-    }
-}
 
 
 .orderTable tr:hover {
@@ -61,3 +60,4 @@ table th.last {
 {
     background: #F5FAFA;
 }
+
