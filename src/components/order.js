@@ -41,29 +41,29 @@ class Order extends React.Component{
 export default withRouter(Order)
 
 const CardContainer = styled.div`
-margin-bottom: .5rem;
-background: #fff;
-border: 1px solid #ccc;
-position: relative;
-max-width: 1280px;
+    margin-bottom: .5rem;
+    background: #fff;
+    border: 1px solid #ccc;
+    position: relative;
+    max-width: 1280px;
     min-width: 768px;
     margin: 0 auto;
 `
 
 const CardHead = styled.h1`
-padding: 1rem;
-display: -webkit-flex;
+    padding: 1rem;
+    display: -webkit-flex;
 `
 
 const CardLineItem = styled.div`
-padding: 0 1rem 1rem 1rem;
-position: relative;
+    padding: 0 1rem 1rem 1rem;
+    position: relative;
 `
 const LineItemCtr = styled.div`
-border-top: 1px solid #ccc;
-padding-top: 1rem;
+    border-top: 1px solid #ccc;
+    padding-top: 1rem;
 `
 
 const ItemContent= styled.div`
-padding-top: 1rem;
+    padding-top: 1rem;
 `

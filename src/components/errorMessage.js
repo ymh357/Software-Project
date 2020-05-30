@@ -12,7 +12,6 @@ class ErrorMessage extends Component {
     }
 
 
-
     render() {
         return (
             <Styleddiv>
@@ -61,12 +60,12 @@ const Styleddiv = styled.div`
 
 `;
 
-
-
 const Message = styled.li`
     // display: list-item;
     // text-align: -webkit-match-parent;
 `;
+
+
 const StyledErrorAlt = styled(ErrorAlt)`
     color: red; 
     -webkit-font-smoothing: antialiased;

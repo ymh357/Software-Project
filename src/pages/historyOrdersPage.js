@@ -4,6 +4,7 @@ import OrderItem from '../components/orderItem'
 import Order from '../components/order'
 import Summary from "../components/Summary";
 import style from '../css/history.module.css';
+import order_item from '../css/orderItem.module.css';
 import NavigationBar from '../components/navigation_bar';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -169,25 +170,71 @@ class HistoryOrdersPage extends React.Component{
 
             return (
                 <div>
-                    <NavigationBar/>
-                    {/* <FormattedHeader> */}
-                    <h1 className= {style.title} data-testid='historyOrders'>History Orders</h1>
-                    {/* </FormattedHeader> */}
+                    <div>
+                        <NavigationBar/>
+                        <h1 className= {style.title} data-testid='historyOrders'>History Orders</h1>
+                    </div>
+                    <div id={order_item.primary} className={order_item.primaryContent}>
+                        <div className={order_item.relativeWrapper}>
+                {/*// <div className="relative-wrapper-order-history-tablet relative wrapper">*/}
+                            <form target="_blank" noValidate="novalidate">
+                                <ul className={order_item.orderSearchResult}>
+                                    <li className={order_item.reviewBox}>
+                                        <button className={order_item.orderButton}>
+                                            View
+                                        </button>
+                                        <p>
+                                            <span className="highlight">Order Number:</span>
+                                            <span>12345</span>
+                                        </p>
+                                        <p>
+                                            <span>Date Ordered:</span>
+                                            <span>25/05/2020</span>
+                                        </p>
+                                        <p>
+                                            <span>Order Status:</span>
+                                            <span>Confirmed</span>
+                                        </p>
+                                    </li>
+                                    <li className={order_item.reviewBox}>
+                                        <button className={order_item.orderButton}>
+                                            View
+                                        </button>
+                                        <p>
+                                            <span>Order Number:</span>
+                                            <span>1234567</span>
+                                        </p>
+                                        <p>
+                                            <span>Date Ordered:</span>
+                                            <span>27/05/2020</span>
+                                        </p>
+                                        <p>
+                                            <span>Order Status:</span>
+                                            <span>Pending</span>
+                                        </p>
+                                    </li>
+                                    {orders}
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                    {/*    <div>*/}
+                    {/*<table className={style.orderTable}>*/}
+                    {/*    <thead>*/}
+                    {/*        <tr>*/}
+                    {/*            <th>Order ID</th>*/}
+                    {/*            <th>Status</th>*/}
+                    {/*            <th>Date</th>*/}
+                    {/*            <th> Amount</th>*/}
+                    {/*        </tr>*/}
+                    {/*    </thead>*/}
+                    {/*    <tbody>*/}
+                    {/*        {orders}*/}
+                    {/*    </tbody>*/}
 
-                    <table className={style.orderTable}>
-                        <thead>
-                            <tr>
-                                <th>Order ID</th>
-                                <th>Status</th>
-                                <th>Date</th>
-                                <th> Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {orders}
-                        </tbody>
+                    {/*</table>*/}
+                    {/*</div>*/}
 
-                    </table>
                 </div>
             )
         }
@@ -204,7 +251,3 @@ class HistoryOrdersPage extends React.Component{
 }
 
 export default withRouter(HistoryOrdersPage)
-
-// const FormattedHeader = styled.h1`
-//     position: relative;
-//     `
