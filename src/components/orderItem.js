@@ -1,7 +1,6 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
-import style from '../css/history.module.css'
-import order_item from "../css/orderItem.module.css";
+import style from "../css/orderItem.module.css";
 
 class OrderItem extends React.Component{
 
@@ -54,11 +53,11 @@ class OrderItem extends React.Component{
 
 
         return (
-            <li className={order_item.reviewBox}>
-                <button className={order_item.orderButton} onClick={this._handleClick}>
+            <li className={style.reviewBox}>
+                <button className={style.orderButton} onClick={this._handleClick}>
                     View
                 </button>
-                <p className={order_item.highlight}>
+                <p className={style.highlight}>
                     <span>Order Number: </span>
                     <span>{this.props.order.keyPurchaseOrderID}</span>
                 </p>
@@ -68,7 +67,7 @@ class OrderItem extends React.Component{
                 </p>
                 <p>
                     <span>Order Status: </span>
-                    <span>{this.props.order.bill_status}</span>
+                    <span>{this.props.order.bill_status.slice(7)}</span>
                 </p>
                 <p>
                     <span>Amount: </span>

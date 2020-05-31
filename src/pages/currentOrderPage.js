@@ -64,11 +64,10 @@ class CurrentOrderPage extends React.Component{
             .then(
                 (response)=>{
                     console.log(response);
-                    let {puchaseID} = response.data.data
+                    //let {purchaseID} = response.data.data
                     let {message,status} = response.data
                     if (status=="success"){
-                        //TODO find another method to store all puchaseID, now only the latest puchaseID will be stored.
-                        localStorage.setItem("puchaseID",puchaseID)
+                        //localStorage.setItem("purchaseID",purchaseID)
                         alert("Submit Successfully!")
                         this.props.history.push('/')
                     }

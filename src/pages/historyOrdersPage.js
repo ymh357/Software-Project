@@ -4,10 +4,8 @@ import OrderItem from '../components/orderItem'
 import Order from '../components/order'
 import Summary from "../components/Summary";
 import style from '../css/history.module.css';
-import order_item from '../css/orderItem.module.css';
 import NavigationBar from '../components/navigation_bar';
 import axios from 'axios';
-import styled from 'styled-components';
 
 
 class HistoryOrdersPage extends React.Component{
@@ -94,61 +92,7 @@ class HistoryOrdersPage extends React.Component{
 }
     componentWillMount(){
         this._handleRefresh(this.getNowDate()) 
-        let testdata =  [
-            {
-                "bill_status": "SERVER_SUCCESS",
-                "createdDate": "Thu, 21 May 2020 10:25:25 GMT",
-                "keyPurchaseOrderID": "1590056725230756",
-                "products": [
-                    {
-                        "lineType": "PRODUCT",
-                        "priceExTax": 1.4,
-                        "priceTotalExTax": 1.4,
-                        "productCode": "01194",
-                        "productId": "21479231981342",
-                        "productName": "Tarpaulin 120cm x 180cm (4' x 6')",
-                        "quantity": 1,
-                        "uri_large": "https://attachments.pjsas.com.au/products/images_large/49852.jpg",
-                        "uri_medium": "https://attachments.pjsas.com.au/products/images_medium/49852.jpg",
-                        "uri_small": "https://attachments.pjsas.com.au/products/images_small/49852.jpg"
-                    }
-                ]
-            },
-            {
-                "bill_status": "SERVER_SUCCESS",
-                "createdDate": "Thu, 21 May 2020 07:54:46 GMT",
-                "keyPurchaseOrderID": "1590047685324486",
-                "products": [
-                    {
-                        "lineType": "PRODUCT",
-                        "priceExTax": 1.4,
-                        "priceTotalExTax": 2.8,
-                        "productCode": "01194",
-                        "productId": "21479231981342",
-                        "productName": "Tarpaulin 120cm x 180cm (4' x 6')",
-                        "quantity": 2,
-                        "uri_large": "https://attachments.pjsas.com.au/products/images_large/49852.jpg",
-                        "uri_medium": "https://attachments.pjsas.com.au/products/images_medium/49852.jpg",
-                        "uri_small": "https://attachments.pjsas.com.au/products/images_small/49852.jpg"
-                    },
-                    {
-                        "lineType": "PRODUCT",
-                        "priceExTax": 4.34,
-                        "priceTotalExTax": 4.34,
-                        "productCode": "01408",
-                        "productId": "21479231982804",
-                        "productName": "Adhesive Spray Craft 350g",
-                        "quantity": 1,
-                        "uri_large": "https://attachments.pjsas.com.au/products/images_large/49888.jpg",
-                        "uri_medium": "https://attachments.pjsas.com.au/products/images_medium/49888.jpg",
-                        "uri_small": "https://attachments.pjsas.com.au/products/images_small/49888.jpg"
-                    }
-                ]
-            },] 
-        // this.setState({
-        //     orders: testdata,
-        // })
-
+    
     }
     render() {
        
@@ -174,48 +118,14 @@ class HistoryOrdersPage extends React.Component{
                         <NavigationBar/>
                         <h1 className= {style.title} data-testid='historyOrders'>History Orders</h1>
                     </div>
-                    <div id={order_item.primary} className={order_item.primaryContent}>
-                        <div className={order_item.relativeWrapper}>
+                    <div id={style.primary} className={style.primaryContent}>
+                        <div className={style.relativeWrapper}>
                 {/*// <div className="relative-wrapper-order-history-tablet relative wrapper">*/}
-                            <form target="_blank" noValidate="novalidate">
-                                <ul className={order_item.orderSearchResult}>
-                                    <li className={order_item.reviewBox}>
-                                        <button className={order_item.orderButton}>
-                                            View
-                                        </button>
-                                        <p>
-                                            <span className="highlight">Order Number:</span>
-                                            <span>12345</span>
-                                        </p>
-                                        <p>
-                                            <span>Date Ordered:</span>
-                                            <span>25/05/2020</span>
-                                        </p>
-                                        <p>
-                                            <span>Order Status:</span>
-                                            <span>Confirmed</span>
-                                        </p>
-                                    </li>
-                                    <li className={order_item.reviewBox}>
-                                        <button className={order_item.orderButton}>
-                                            View
-                                        </button>
-                                        <p>
-                                            <span>Order Number:</span>
-                                            <span>1234567</span>
-                                        </p>
-                                        <p>
-                                            <span>Date Ordered:</span>
-                                            <span>27/05/2020</span>
-                                        </p>
-                                        <p>
-                                            <span>Order Status:</span>
-                                            <span>Pending</span>
-                                        </p>
-                                    </li>
+                            <div className={style.orderResultWrapper}>
+                                <ul className={style.orderSearchResult}>
                                     {orders}
                                 </ul>
-                            </form>
+                            </div>
                         </div>
                     </div>
                     {/*    <div>*/}
