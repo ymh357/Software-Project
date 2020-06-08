@@ -2,11 +2,11 @@ import React from "react"
 import {withRouter} from 'react-router-dom'
 import OrderItem from '../components/orderItem'
 import Order from '../components/order'
+import PageButton from '../components/pageButton'
 import Summary from "../components/Summary";
 import style from '../css/history.module.css';
 import NavigationBar from '../components/navigation_bar';
 import axios from 'axios';
-
 
 class HistoryOrdersPage extends React.Component{
 
@@ -14,11 +14,20 @@ class HistoryOrdersPage extends React.Component{
         super(props);
 
         //Modified by Dongsheng, clean local test data, avoid null value error
-        // const storedOrders = JSON.parse(localStorage.getItem('orders'))
+        const storedOrders = JSON.parse(localStorage.getItem('orders'))
+
+        this.pageNext = this.pageNext.bind(this);
+        this.setPage = this.setPage.bind(this);
         this.state = {
-            orders: [],
+            orders:[],
             isHistoryLoading: false,
-        }
+            indexList:[],// current data of this page
+            current: 1, // current page
+            pageSize:8, // number of orders shown on each page
+            goValue:0,  // page you wanna got o
+            totalPage:0,//total number of pages
+        };
+
 
     }
     getNowDate() {
@@ -74,6 +83,8 @@ class HistoryOrdersPage extends React.Component{
                     this.setState({
                         orders:history_orders,
                         isHistoryLoading:true,
+                        indexList: history_orders.slice(0, this.state.pageSize),
+                        totalPage: Math.ceil(history_orders.length / this.state.pageSize),
                     })
                     
                 }
@@ -89,20 +100,36 @@ class HistoryOrdersPage extends React.Component{
             }
         )
 
-}
-    componentWillMount(){
-        this._handleRefresh(this.getNowDate()) 
-    
     }
+    componentWillMount() {
+        this._handleRefresh(this.getNowDate())
+        this.pageNext(this.state.goValue)
+
+    }
+
+    setPage(num){
+        this.setState({
+            indexList:this.state.orders.slice(num , num + this.state.pageSize)
+        })
+    }
+
+    pageNext(num) {
+        this.setPage(num)
+    }
+
     render() {
-       
         if(sessionStorage.getItem('user')&&this.state.isHistoryLoading){
-           
+
             const orders = this.state.orders.map(order =>
                <OrderItem order={order} key={order.keyPurchaseOrderID}/>
             )
+
+            const listorders = this.state.indexList.map(order =>
+                <OrderItem order={order} key={order.keyPurchaseOrderID}/>
+            )
+
             if(Object.entries(this.props.match.params).length !== 0){
-                let order = this.state.orders.find( e => +e.keyPurchaseOrderID === +this.props.match.params.orderId)
+                let order = this.state.indexList.find( e => +e.keyPurchaseOrderID === +this.props.match.params.orderId)
                 return (
                     <>
                     <header>
@@ -120,31 +147,17 @@ class HistoryOrdersPage extends React.Component{
                     </div>
                     <div id={style.primary} className={style.primaryContent}>
                         <div className={style.relativeWrapper}>
-                {/*// <div className="relative-wrapper-order-history-tablet relative wrapper">*/}
                             <div className={style.orderResultWrapper}>
                                 <ul className={style.orderSearchResult}>
-                                    {orders}
+                                    {/*{orders}*/}
+                                    {listorders}
+                                </ul>
+                                <ul>
+                                    <PageButton { ...this.state } pageNext={this.pageNext}/>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    {/*    <div>*/}
-                    {/*<table className={style.orderTable}>*/}
-                    {/*    <thead>*/}
-                    {/*        <tr>*/}
-                    {/*            <th>Order ID</th>*/}
-                    {/*            <th>Status</th>*/}
-                    {/*            <th>Date</th>*/}
-                    {/*            <th> Amount</th>*/}
-                    {/*        </tr>*/}
-                    {/*    </thead>*/}
-                    {/*    <tbody>*/}
-                    {/*        {orders}*/}
-                    {/*    </tbody>*/}
-
-                    {/*</table>*/}
-                    {/*</div>*/}
-
                 </div>
             )
         }

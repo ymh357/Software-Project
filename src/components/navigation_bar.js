@@ -46,8 +46,6 @@ class NavigationBar extends React.PureComponent{
 
                 </div>
             </>
-
-
         )
     }
 }
