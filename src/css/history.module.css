@@ -9,57 +9,6 @@
 .orderContainer{
     width: 100%;
 }
-/* 
-.orderTable{
-    width: 90%;
-    font-family: 'Arial';
-    margin: 25px auto;
-    border-collapse: collapse;
-    border: 1px solid #eee;
-    border-bottom: 2px solid rgba(0, 35, 122, 0.5);
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1), 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 20px 20px rgba(0, 0, 0, 0.05), 0px 30px 20px rgba(0, 0, 0, 0.05);
-}
-
-.orderTable th, .orderTable td{
-    color: #999;
-    border: 1px solid #eee;
-    padding: 12px 0;
-    border-collapse: collapse;
-}
-
-.orderTable th{
-  background:#00cccc;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 12px;
-  width: 20%;
-}
-.orderTable th,td{
-  width: 20%;
-}
-
-.orderTable th.last {
-    border-right: none;
-  }
-
-
-.orderTable tr:hover {
-    background: #f4f4f4;
-  }
-
-.orderTable tr:hover td {
-    color: #555;
-    cursor: pointer;
-  }
-
-.orderTable tr:nth-child(odd)
-{
-    background: #fff;
-}
-.orderTable tr:nth-child(even)
-{
-    background: #F5FAFA;
-} */
 
 .orderResultWrapper {
   width:425px;
@@ -72,13 +21,10 @@
   height:478px;
   letter-spacing:0.3px;
   line-height:18px;
-  /*text-size-adjust:100%;*/
 }
 
 
 .orderSearchResult {
-  /*padding: 0;*/
-  /*margin: 0;*/
   display: block;
   list-style-type: disc;
   margin-block-start: 1em;

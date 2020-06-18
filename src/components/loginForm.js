@@ -161,6 +161,24 @@ const Inputbox = styled.input`
     outline: none;
     font-family: 'Arial', sans-serif;
     box-shadow: none;
+    
+  //     border-bottom-color:rgb(51, 51, 51);
+  // border-bottom-style:none;
+  // border-bottom-width:0px;
+  // border-image-outset:0px;
+  // border-image-repeat:stretch;
+  // border-image-slice:100%;
+  // border-image-source:none;
+  // border-image-width:1;
+  // border-left-color:rgb(51, 51, 51);
+  // border-left-style:none;
+  // border-left-width:0px;
+  // border-right-color:rgb(51, 51, 51);
+  // border-right-style:none;
+  // border-right-width:0px;
+  // border-top-color:rgb(51, 51, 51);
+  // border-top-style:none;
+  // border-top-width:0px;
 `
 
 
@@ -193,13 +211,14 @@ const StyledForm = styled.form`
     border-bottom-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+    box-shadow: 0 2px 2px 0 rgba(51,51,51,.2);
 
     /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a', endColorstr='#1f222e',GradientType=1 );
     /* IE6-9 fallback on horizontal gradient */
     @media screen and (min-width: 1200px){
         width:25%;
-        padding-bottom: 8%
+        padding-bottom: 8% 
 }
 `
 
